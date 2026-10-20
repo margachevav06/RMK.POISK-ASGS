@@ -17,27 +17,19 @@
 :root {
     --bg-body:         #0A0A0A;
     --bg-card:         #151515;
-    --bg-card-hover:   #1E1E1E;
     --bg-input:        #0F0F0F;
-    --bg-table-header: #1A1A1A;
     --bg-result:       #121212;
     --bg-summary:      #0D0D0D;
 
     --border-color:  #2A2A2A;
     --border-strong: #3A3A3A;
-    --border-accent: #C86A32;
 
     --text-primary:   #F2F2F2;
     --text-secondary: #B0B0B0;
     --text-muted:     #707070;
 
     --accent:         #C86A32;
-    --accent-hover:   #E08343;
     --accent-bg:      rgba(200, 106, 50, 0.12);
-    --accent-border:  rgba(200, 106, 50, 0.45);
-
-    --shadow-sm: 0 1px 0 #000;
-    --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.9);
 
     --transition: 0.2s ease;
     --font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -47,27 +39,19 @@
 body.light {
     --bg-body:         #E8E8E8;
     --bg-card:         #F5F5F5;
-    --bg-card-hover:   #FFFFFF;
     --bg-input:        #EDEDED;
-    --bg-table-header: #DDD;
     --bg-result:       #EFEFEF;
     --bg-summary:      #E0E0E0;
 
     --border-color:  #C8C8C8;
     --border-strong: #B0B0B0;
-    --border-accent: #A85422;
 
     --text-primary:   #111111;
     --text-secondary: #3A3A3A;
     --text-muted:     #6A6A6A;
 
     --accent:         #A85422;
-    --accent-hover:   #8A4318;
     --accent-bg:      rgba(168, 84, 34, 0.10);
-    --accent-border:  rgba(168, 84, 34, 0.35);
-
-    --shadow-sm: 0 1px 0 #FFF;
-    --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
 /* ============================================================
@@ -96,10 +80,9 @@ input[type="number"], input[type="time"] {
     font-family: var(--font-mono);
     font-weight: 500;
 }
-input[type="text"] { text-align: left; }
 
 /* ============================================================
-   3. ТОПБАР И КНОПКИ
+   3. ТОПБАР
    ============================================================ */
 .topbar {
     display: flex;
@@ -129,19 +112,9 @@ input[type="text"] { text-align: left; }
     flex-shrink: 0;
 }
 
-.logo-img {
-    max-height: 36px;
-    width: auto;
-    object-fit: contain;
-    display: block;
-}
+.logo-img { max-height: 36px; width: auto; display: block; }
 
 .logo-text {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    gap: 0.35em;
-    line-height: 1;
     color: var(--accent);
     white-space: nowrap;
     font-weight: 600;
@@ -171,41 +144,15 @@ input[type="text"] { text-align: left; }
     justify-content: center;
     transition: var(--transition);
 }
-.btn-action:hover:not(:disabled) {
-    background: var(--accent-bg);
-    border-color: var(--accent);
-    color: var(--accent);
-}
-.btn-action:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-}
+.btn-action:hover:not(:disabled) { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
+.btn-action:disabled { opacity: 0.3; cursor: not-allowed; }
 
 /* ============================================================
-   4. ШАПКА РАСЧЁТА
+   4. ШАПКА
    ============================================================ */
-.calc-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
-.calc-header-title { flex: 1; min-width: 220px; text-align: left; }
-.calc-header-title h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 0;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-}
-.calc-header-title .subtitle {
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    margin-top: 4px;
-    line-height: 1.45;
-    font-weight: 400;
-}
+.calc-header { margin-bottom: 20px; text-align: left; }
+.calc-header-title h1 { font-size: 1.5rem; font-weight: 600; margin: 0; line-height: 1.15; }
+.calc-header-title .subtitle { color: var(--text-secondary); font-size: 0.85rem; margin-top: 4px; }
 
 .calc-body {
     background: var(--bg-card);
@@ -213,372 +160,198 @@ input[type="text"] { text-align: left; }
     padding: 24px 28px 32px;
     border: 1px solid var(--border-strong);
     border-top: 3px solid var(--accent);
-    position: relative;
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.9);
 }
 
-.section-title {
-    font-size: 1rem;
-    font-weight: 500;
-    margin: 24px 0 10px;
-    color: var(--text-secondary);
-    letter-spacing: 0.02em;
-}
+.section-title { font-size: 1rem; font-weight: 500; margin: 24px 0 10px; color: var(--text-secondary); }
 .section-title:first-of-type { margin-top: 0; }
 
 /* ============================================================
    5. ВКЛАДКИ
    ============================================================ */
 .fire-subtabs, .cond-tabs {
-    display: inline-flex;
-    background: var(--bg-input);
-    padding: 3px;
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
-    margin-bottom: 16px;
-    gap: 2px;
-    width: auto;
-    max-width: 100%;
+    display: flex; flex-wrap: wrap; background: var(--bg-input); padding: 3px;
+    border-radius: 6px; border: 1px solid var(--border-color); margin-bottom: 16px; gap: 4px; width: 100%;
 }
-
 .fire-subtab, .cond-btn {
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    padding: 6px 14px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 4px;
-    font-family: inherit;
-    transition: all 0.2s ease;
-    text-align: center;
-    white-space: nowrap;
+    background: transparent; border: none; color: var(--text-muted); padding: 8px 12px;
+    font-size: 0.85rem; font-weight: 500; cursor: pointer; border-radius: 4px;
+    font-family: inherit; flex: 1 1 auto; text-align: center; transition: all 0.2s ease;
 }
-.fire-subtab:hover, .cond-btn:hover {
-    color: var(--text-primary);
-}
-.fire-subtab.active, .cond-btn.active {
-    color: var(--accent);
-    background: var(--bg-card);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 0 0 1px var(--border-color);
-    font-weight: 600;
-}
+.fire-subtab.active, .cond-btn.active { color: var(--accent); background: var(--bg-card); font-weight: 600; }
 
-.period-switch {
-    display: flex;
-    gap: 6px;
-    margin: 10px 0 16px;
-    flex-wrap: wrap;
-}
+.period-switch { display: flex; gap: 6px; margin: 10px 0 16px; flex-wrap: wrap; }
 .period-btn {
-    flex: 1;
-    min-width: 80px;
-    padding: 8px 12px;
-    border: 1px solid var(--border-strong);
-    background: transparent;
-    color: var(--text-secondary);
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: 500;
-    font-family: inherit;
-    transition: var(--transition);
-    text-align: center;
+    flex: 1; min-width: 80px; padding: 8px 12px;
+    border: 1px solid var(--border-strong); background: transparent;
+    color: var(--text-secondary); border-radius: 4px; cursor: pointer;
+    font-size: 0.85rem; font-weight: 500; transition: var(--transition);
 }
-.period-btn:hover { border-color: var(--accent); color: var(--accent); }
-.period-btn.active {
-    border-color: var(--accent);
-    background: var(--accent-bg);
-    color: var(--accent);
-    font-weight: 600;
-}
+.period-btn.active { border-color: var(--accent); background: var(--accent-bg); color: var(--accent); }
 
 .fire-sub-content { display: none; }
-.fire-sub-content.active { display: block; animation: fadeInSimple 0.2s ease; }
-@keyframes fadeInSimple { from { opacity: 0; } to { opacity: 1; } }
+.fire-sub-content.active { display: block; }
 
 /* ============================================================
-   6. ТАБЛИЦЫ
+   6. СЕКУНДОМЕР
    ============================================================ */
-.table-wrap { 
-    overflow-x: auto; 
-    -webkit-overflow-scrolling: touch;
+.stopwatch-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-input);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+    box-shadow: 0 4px 12px rgba(200, 106, 50, 0.1);
+}
+.stopwatch-time {
+    font-family: var(--font-mono);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 10px rgba(200, 106, 50, 0.3);
+}
+.stopwatch-controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.btn-sw {
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.btn-sw:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sw.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-sw.primary:hover { background: var(--accent-hover); }
+.btn-sw.accent { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
+.btn-sw.accent:hover { background: var(--accent); color: #fff; }
+
+/* ============================================================
+   7. ТАБЛИЦЫ
+   ============================================================ */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9rem; table-layout: fixed; }
+th { color: var(--text-muted); font-weight: 500; font-size: 0.75rem; padding: 10px 4px; text-align: center; border-bottom: 2px solid var(--border-strong); }
+td { padding: 8px 4px; text-align: center; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+
+table th:first-child, table td:first-child { width: 40%; }
+table th:nth-child(2), table td:nth-child(2) { width: 30%; }
+table th:last-child, table td:last-child { width: 30%; }
+
+table.two-col th:first-child, table.two-col td:first-child { width: 50%; }
+table.two-col th:last-child, table.two-col td:last-child { width: 50%; }
+
+.type-label { font-weight: 400; text-align: left; display: flex; align-items: center; }
+
+.time-input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    max-width: 140px;
+    margin: 0 auto;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 12px 0 14px;
-    font-size: 0.9rem;
-    table-layout: fixed;
+table input[type="number"], table input[type="time"] {
+    width: 100%; padding: 8px 4px;
+    border: 1px solid var(--border-strong); border-radius: 4px;
+    font-size: 0.95rem; background: var(--bg-input); color: var(--text-primary);
+    font-family: var(--font-mono);
 }
-th {
-    background: transparent;
-    color: var(--text-muted);
-    font-weight: 500;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    padding: 10px 8px;
-    text-align: center;
-    border-bottom: 2px solid var(--border-strong);
+table input:focus { border-color: var(--accent); outline: none; }
+input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+input[type=number] { -moz-appearance: textfield; }
+
+.btn-now {
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    color: var(--accent);
+    border-radius: 4px;
+    padding: 0 8px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
 }
-td {
-    padding: 8px 6px;
-    text-align: center;
-    border-bottom: 1px solid var(--border-color);
-    vertical-align: middle;
-}
-tr:last-child td { border-bottom: none; }
+.btn-now:hover { background: var(--accent-bg); border-color: var(--accent); }
 
 .member-row.hidden-member { display: none; }
 
-/* Колонки таблиц (адаптивно) */
-table th:first-child, table td:first-child { width: 34%; }
-table th:nth-child(2), table td:nth-child(2) { width: 33%; }
-table th:last-child, table td:last-child { width: 33%; }
-
-/* Для таблиц с 2-мя колонками (общие параметры) */
-table.two-col th:first-child, table.two-col td:first-child { width: 60%; }
-table.two-col th:last-child, table.two-col td:last-child { width: 40%; }
-
-.type-label {
-    font-weight: 400;
-    font-size: 0.9rem;
-    text-align: left;
-    display: flex;
-    align-items: center;
-}
-
-table input[type="number"], 
-table input[type="time"] {
-    width: 100%;
-    max-width: 110px;
-    padding: 6px;
-    border: 1px solid var(--border-strong);
-    border-radius: 4px;
-    font-size: 0.9rem;
-    background: var(--bg-input);
-    color: var(--text-primary);
-    font-family: var(--font-mono);
-    margin: 0 auto;
-}
-table input:focus {
-    border-color: var(--accent);
-    outline: none;
-    box-shadow: 0 0 0 2px var(--accent-bg);
-}
-
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
-input[type=number] { -moz-appearance: textfield; }
-
 /* ============================================================
-   7. РЕЗУЛЬТАТЫ И СВОДКА
+   8. РЕЗУЛЬТАТЫ
    ============================================================ */
-.results-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 14px;
-}
+.results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
 .result-card {
-    background: var(--bg-result);
-    border-radius: 6px;
-    padding: 16px 18px;
-    border: 1px solid var(--border-strong);
-    border-left: 3px solid var(--accent);
+    background: var(--bg-result); border-radius: 6px; padding: 16px;
+    border: 1px solid var(--border-strong); border-left: 3px solid var(--accent);
 }
-.result-card h3 {
-    margin: 0 0 12px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    letter-spacing: 0.05em;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border-color);
-}
-.result-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 6px 0;
-    border-bottom: 1px solid var(--border-color);
-    gap: 8px;
-}
+.result-card h3 { margin: 0 0 12px; font-size: 0.8rem; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
+.result-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border-color); gap: 8px; }
 .result-row:last-child { border-bottom: none; }
-.result-label {
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    font-weight: 400;
-}
-.result-value {
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-    font-size: 0.95rem;
-    font-family: var(--font-mono);
-}
-.result-value.accent {
-    color: var(--accent);
-    font-size: 1.1rem;
-}
+.result-label { color: var(--text-secondary); font-size: 0.85rem; }
+.result-value { font-weight: 600; font-family: var(--font-mono); }
+.result-value.accent { color: var(--accent); font-size: 1.1rem; }
 
 .summary-block {
-    background: var(--bg-summary);
-    border: 1px solid var(--border-strong);
-    border-left: 3px solid var(--accent);
-    border-radius: 6px;
-    padding: 16px 20px;
-    margin-top: 18px;
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    overflow-wrap: break-word;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    background: var(--bg-summary); border: 1px solid var(--border-strong); border-left: 3px solid var(--accent);
+    border-radius: 6px; padding: 16px; margin-top: 18px;
+    font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.6; color: var(--text-secondary);
+    overflow-wrap: break-word; display: flex; flex-direction: column; gap: 8px;
 }
-
-.summary-block .summary-title {
-    font-family: var(--font-stack);
-    font-weight: 500;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    color: var(--accent);
-    margin-bottom: 4px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.summary-block .summary-title::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border-strong);
-}
-
-.summary-step {
-    display: block;
-    padding-left: 14px;
-    border-left: 2px solid var(--border-strong);
-    position: relative;
-    width: 100%;
-}
-.summary-step::before {
-    content: '▸';
-    position: absolute;
-    left: -7px;
-    color: var(--accent);
-    font-size: 0.7rem;
-    top: 0;
-}
-.summary-step strong { color: var(--text-primary); font-weight: 500; }
+.summary-title { color: var(--accent); font-weight: 600; margin-bottom: 4px; border-bottom: 1px solid var(--border-strong); padding-bottom: 4px; }
+.summary-step { display: block; padding-left: 12px; border-left: 2px solid var(--border-strong); }
 .summary-step .val { color: var(--accent); font-weight: 600; }
-.summary-step .formula {
-    display: block;
-    margin-top: 4px;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    word-break: break-word;
-}
+.summary-step .formula { display: block; margin-top: 4px; color: var(--text-muted); font-size: 0.8rem; }
 
 /* ============================================================
-   8. ПОДСКАЗКИ И ПОДВАЛ
+   9. ПОДВАЛ
    ============================================================ */
-.hint-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: var(--border-strong);
-    color: var(--text-muted);
-    font-size: 0.65rem;
-    font-weight: 500;
-    margin-left: 6px;
-    cursor: help;
-    flex-shrink: 0;
-    transition: var(--transition);
-}
-.hint-icon:hover, .hint-icon:active {
-    background: var(--accent);
-    color: #fff;
-}
-
-.global-tooltip {
-    position: fixed;
-    background: #1E1E1E;
-    color: #F0F0F0;
-    border: 1px solid var(--accent);
-    border-radius: 6px;
-    padding: 8px 12px;
-    font-size: 0.8rem;
-    font-weight: 400;
-    line-height: 1.4;
-    max-width: 240px;
-    z-index: 9999;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.15s ease, transform 0.15s ease;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.8);
-    text-align: left;
-    transform: translateY(5px);
-}
-.global-tooltip.visible { opacity: 1; transform: translateY(0); }
-.global-tooltip::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -6px;
-    border-width: 6px;
-    border-style: solid;
-    border-color: var(--accent) transparent transparent transparent;
-}
-.global-tooltip.arrow-top::after {
-    top: auto;
-    bottom: 100%;
-    border-color: transparent transparent var(--accent) transparent;
-}
-
 .app-footer {
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 0.75rem;
-    margin-top: 32px;
-    padding-top: 16px;
-    border-top: 1px solid var(--border-color);
-    opacity: 0.7;
-    letter-spacing: 0.05em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex; justify-content: center; align-items: center; text-align: center;
+    color: var(--text-muted); font-size: 0.75rem; margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border-color);
 }
 
 /* ============================================================
-   9. МОБИЛЬНАЯ АДАПТАЦИЯ
+   10. МОБИЛЬНАЯ АДАПТАЦИЯ
    ============================================================ */
 @media (max-width: 700px) {
-    body { padding: 12px 8px; }
-    .topbar { margin-bottom: 16px; padding-bottom: 10px; justify-content: center; }
-    .topbar-logo { margin-right: auto; }
-    .logo-img { max-height: 30px; }
-    .topbar-actions { margin-left: 0; width: auto; }
-    .calc-body { padding: 16px 12px 20px; }
-    .calc-header-title h1 { font-size: 1.25rem; }
+    body { padding: 10px 8px; }
+    .topbar { justify-content: center; flex-direction: column; gap: 8px; }
+    .topbar-actions { margin-left: 0; width: 100%; justify-content: center; }
+    .calc-body { padding: 16px 12px; }
     
-    .fire-subtabs, .cond-tabs { display: flex; flex-wrap: wrap; width: 100%; }
-    .fire-subtab, .cond-btn { flex: 1 1 30%; padding: 6px 8px; font-size: 0.75rem; }
+    .stopwatch-panel { flex-direction: column; align-items: stretch; padding: 12px; }
+    .stopwatch-time { font-size: 2rem; text-align: center; }
+    .stopwatch-controls { justify-content: center; }
+    .btn-sw { flex: 1; justify-content: center; }
     
     .results-grid { grid-template-columns: 1fr; }
-    .table-wrap { margin-left: -12px; margin-right: -12px; padding-left: 12px; padding-right: 12px; }
-    th { font-size: 0.7rem; padding: 6px 4px; }
-    td { padding: 6px 4px; }
-    table input[type="number"], table input[type="time"] { max-width: 85px; font-size: 0.85rem; padding: 4px; }
-    .type-label { font-size: 0.8rem; flex-direction: column; align-items: flex-start; }
-    .hint-icon { margin-left: 0; margin-top: 2px; }
+    table th:first-child, table td:first-child { width: 45%; }
+    table th:nth-child(2), table td:nth-child(2) { width: 27.5%; }
+    table th:last-child, table td:last-child { width: 27.5%; }
+    
+    .type-label { flex-direction: column; align-items: flex-start; font-size: 0.8rem; }
+    table input[type="number"], table input[type="time"] { font-size: 0.85rem; padding: 6px 2px; }
+    .btn-now { height: 32px; padding: 0 6px; font-size: 0.9rem; }
 }
 </style>
 </head>
@@ -592,345 +365,388 @@ input[type=number] { -moz-appearance: textfield; }
         </a>
         <div class="topbar-actions">
             <button type="button" class="btn-action" id="btnUndo" title="Отменить сброс" disabled>↶</button>
-            <button type="button" class="btn-action" id="btnReset" title="Очистить текущее звено">↺</button>
-            <button type="button" class="btn-action" id="themeSwitcher" title="Переключить тему">🌙</button>
+            <button type="button" class="btn-action" id="btnReset" title="Очистить">↺</button>
+            <button type="button" class="btn-action" id="themeSwitcher" title="Тема">🌙</button>
         </div>
     </div>
 
-    <div class="page active">
-        <div class="calc-header">
-            <div class="calc-header-title">
-                <h1 id="mainTitle">Расчёт ГДЗС</h1>
-                <div class="subtitle">Время работы в непригодной для дыхания среде · пошаговое решение</div>
+    <div class="calc-header">
+        <div class="calc-header-title">
+            <h1 id="mainTitle">Расчёт ГДЗС</h1>
+            <div class="subtitle">Время работы в непригодной для дыхания среде</div>
+        </div>
+    </div>
+
+    <div class="calc-body" id="calcForm">
+        <!-- ГЛАВНЫЕ ВКЛАДКИ -->
+        <div class="fire-subtabs" id="main-tabs">
+            <button type="button" class="fire-subtab active" data-main="gdzs">ГДЗС</button>
+            <button type="button" class="fire-subtab" data-main="gazospas">Газоспас</button>
+        </div>
+
+        <!-- СЕКУНДОМЕР -->
+        <div class="stopwatch-panel">
+            <div class="stopwatch-time" id="swDisplay">00:00:00</div>
+            <div class="stopwatch-controls">
+                <button class="btn-sw primary" id="swStart">▶ Старт</button>
+                <button class="btn-sw" id="swReset">↺ Сброс</button>
+                <button class="btn-sw accent" id="swFill">Записать в звено</button>
             </div>
         </div>
 
-        <div class="calc-body" id="calcForm">
-            <!-- ГЛАВНЫЕ ВКЛАДКИ -->
-            <div class="fire-subtabs" id="main-tabs">
-                <button type="button" class="fire-subtab active" data-main="gdzs">ГДЗС</button>
-                <button type="button" class="fire-subtab" data-main="gazospas">Газоспас</button>
+        <!-- ГДЗС -->
+        <div class="fire-sub-content active" id="main-content-gdzs">
+            <h2 class="section-title">Условия работы</h2>
+            <div class="cond-tabs" id="gdzs-cond-tabs">
+                <button type="button" class="cond-btn active" data-cond="normal">Обычные (3)</button>
+                <button type="button" class="cond-btn" data-cond="complex">Сложные (5)</button>
+                <button type="button" class="cond-btn" data-cond="rescue">Спасание (2)</button>
             </div>
 
-            <!-- ==========================================
-                 ГДЗС (Методика по Приказу 640)
-                 ========================================== -->
-            <div class="fire-sub-content active" id="main-content-gdzs">
-                
-                <h2 class="section-title">Условия работы</h2>
-                <div class="cond-tabs" id="gdzs-cond-tabs">
-                    <button type="button" class="cond-btn active" data-cond="normal">Обычные (3 чел.)</button>
-                    <button type="button" class="cond-btn" data-cond="complex">Сложные (5 чел.)</button>
-                    <button type="button" class="cond-btn" data-cond="rescue">Спасание (2 чел.)</button>
-                </div>
+            <h2 class="section-title">Общие параметры</h2>
+            <div class="table-wrap"><table class="two-col">
+                <thead><tr><th>Параметр</th><th>Значение</th></tr></thead>
+                <tbody>
+                    <tr><td><span class="type-label">Кол-во баллонов (n)</span></td><td><input type="number" id="gdzsN" value="1" step="1" min="1" /></td></tr>
+                    <tr><td><span class="type-label">Объём баллона (V), л</span></td><td><input type="number" id="gdzsV" value="6.8" step="0.1" min="0.1" /></td></tr>
+                </tbody>
+            </table></div>
 
-                <h2 class="section-title">Общие параметры</h2>
-                <div class="table-wrap"><table class="two-col">
-                    <thead><tr><th>Параметр</th><th>Значение</th></tr></thead>
+            <div class="period-switch" id="gdzs-team-tabs">
+                <button type="button" class="period-btn active" data-gdzs-team="1">Звено 1</button>
+                <button type="button" class="period-btn" data-gdzs-team="2">Звено 2</button>
+                <button type="button" class="period-btn" data-gdzs-team="3">Звено 3</button>
+            </div>
+
+            <!-- ЗВЕНЬЯ ГДЗС -->
+            <div class="gdzs-team-content active" id="gdzs-team-1">
+                <div class="table-wrap"><table>
+                    <thead><tr><th>Газодымозащитник</th><th>P при включении (Pн)</th></tr></thead>
+                    <tbody>
+                        <tr class="member-row" id="gdzs-r-1-1"><td><span class="type-label">Газодымозащитник 1</span></td><td><input type="number" class="gdzs-in" data-team="1" data-member="1" value="290" step="1" /></td></tr>
+                        <tr class="member-row" id="gdzs-r-1-2"><td><span class="type-label">Газодымозащитник 2</span></td><td><input type="number" class="gdzs-in" data-team="1" data-member="2" value="280" step="1" /></td></tr>
+                        <tr class="member-row" id="gdzs-r-1-3"><td><span class="type-label">Газодымозащитник 3</span></td><td><input type="number" class="gdzs-in" data-team="1" data-member="3" value="270" step="1" /></td></tr>
+                        <tr class="member-row hidden-member" id="gdzs-r-1-4"><td><span class="type-label">Газодымозащитник 4</span></td><td><input type="number" class="gdzs-in" data-team="1" data-member="4" value="0" step="1" /></td></tr>
+                        <tr class="member-row hidden-member" id="gdzs-r-1-5"><td><span class="type-label">Газодымозащитник 5</span></td><td><input type="number" class="gdzs-in" data-team="1" data-member="5" value="0" step="1" /></td></tr>
+                    </tbody>
+                </table></div>
+                <div class="table-wrap" style="margin-top: 10px;"><table class="two-col">
+                    <thead><tr><th>Время включения</th><th>Значение</th></tr></thead>
                     <tbody>
                         <tr>
-                            <td><span class="type-label">Кол-во баллонов (n)</span></td>
-                            <td><input type="number" id="gdzsN" value="1" step="1" min="1" /></td>
-                        </tr>
-                        <tr>
-                            <td><span class="type-label">Объём баллона (V), л</span></td>
-                            <td><input type="number" id="gdzsV" value="6.8" step="0.1" min="0.1" /></td>
+                            <td>Начало работы</td>
+                            <td>
+                                <div class="time-input-group">
+                                    <input type="time" class="gdzs-time" data-team="1" value="11:08" />
+                                    <button type="button" class="btn-now" onclick="setCurrentTime('gdzs', 1)" title="Вставить текущее время">⏱</button>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table></div>
-
-                <div class="period-switch" id="gdzs-team-tabs">
-                    <button type="button" class="period-btn active" data-gdzs-team="1">Звено 1</button>
-                    <button type="button" class="period-btn" data-gdzs-team="2">Звено 2</button>
-                    <button type="button" class="period-btn" data-gdzs-team="3">Звено 3</button>
-                </div>
-
-                <!-- Блоки звеньев ГДЗС -->
-                <div class="gdzs-team-content active" id="gdzs-team-1">
-                    <div class="table-wrap"><table>
-                        <thead><tr><th>Газодымозащитник</th><th>P при включении (Pн)</th></tr></thead>
-                        <tbody>
-                            <tr class="member-row" id="gdzs-r-1-1"><td><span class="type-label">Газодымозащитник 1</span></td><td><input type="number" class="gdzs-in" data-team="1" data-member="1" value="290" step="1" /></td></tr>
-                            <tr class="member-row" id="gdzs-r-1-2"><td><span class="type-label">Газодымозащитник 2</span></td><td><input type="number" class="gdzs-in" data-team="1" data-member="2" value="280" step="1" /></td></tr>
-                            <tr class="member-row" id="gdzs-r-1-3"><td><span class="type-label">Газодымозащитник 3</span></td><td><input type="number" class="gdzs-in" data-team="1" data-member="3" value="270" step="1" /></td></tr>
-                            <tr class="member-row hidden-member" id="gdzs-r-1-4"><td><span class="type-label">Газодымозащитник 4</span></td><td><input type="number" class="gdzs-in" data-team="1" data-member="4" value="0" step="1" /></td></tr>
-                            <tr class="member-row hidden-member" id="gdzs-r-1-5"><td><span class="type-label">Газодымозащитник 5</span></td><td><input type="number" class="gdzs-in" data-team="1" data-member="5" value="0" step="1" /></td></tr>
-                        </tbody>
-                    </table></div>
-                    <div class="table-wrap" style="margin-top: 10px;"><table class="two-col">
-                        <thead><tr><th>Время включения</th><th>Значение</th></tr></thead>
-                        <tbody><tr><td>Начало работы</td><td><input type="time" class="gdzs-time" data-team="1" value="11:08" /></td></tr></tbody>
-                    </table></div>
-                    <div class="results-grid" id="gdzs-res-1"></div>
-                    <div class="summary-block" id="gdzs-summary-1"></div>
-                </div>
-
-                <div class="gdzs-team-content" id="gdzs-team-2" style="display:none;">
-                    <div class="table-wrap"><table>
-                        <thead><tr><th>Газодымозащитник</th><th>P при включении (Pн)</th></tr></thead>
-                        <tbody>
-                            <tr class="member-row" id="gdzs-r-2-1"><td><span class="type-label">Газодымозащитник 1</span></td><td><input type="number" class="gdzs-in" data-team="2" data-member="1" value="295" step="1" /></td></tr>
-                            <tr class="member-row" id="gdzs-r-2-2"><td><span class="type-label">Газодымозащитник 2</span></td><td><input type="number" class="gdzs-in" data-team="2" data-member="2" value="290" step="1" /></td></tr>
-                            <tr class="member-row" id="gdzs-r-2-3"><td><span class="type-label">Газодымозащитник 3</span></td><td><input type="number" class="gdzs-in" data-team="2" data-member="3" value="285" step="1" /></td></tr>
-                            <tr class="member-row hidden-member" id="gdzs-r-2-4"><td><span class="type-label">Газодымозащитник 4</span></td><td><input type="number" class="gdzs-in" data-team="2" data-member="4" value="0" step="1" /></td></tr>
-                            <tr class="member-row hidden-member" id="gdzs-r-2-5"><td><span class="type-label">Газодымозащитник 5</span></td><td><input type="number" class="gdzs-in" data-team="2" data-member="5" value="0" step="1" /></td></tr>
-                        </tbody>
-                    </table></div>
-                    <div class="table-wrap" style="margin-top: 10px;"><table class="two-col">
-                        <thead><tr><th>Время включения</th><th>Значение</th></tr></thead>
-                        <tbody><tr><td>Начало работы</td><td><input type="time" class="gdzs-time" data-team="2" value="12:00" /></td></tr></tbody>
-                    </table></div>
-                    <div class="results-grid" id="gdzs-res-2"></div>
-                    <div class="summary-block" id="gdzs-summary-2"></div>
-                </div>
-
-                <div class="gdzs-team-content" id="gdzs-team-3" style="display:none;">
-                    <div class="table-wrap"><table>
-                        <thead><tr><th>Газодымозащитник</th><th>P при включении (Pн)</th></tr></thead>
-                        <tbody>
-                            <tr class="member-row" id="gdzs-r-3-1"><td><span class="type-label">Газодымозащитник 1</span></td><td><input type="number" class="gdzs-in" data-team="3" data-member="1" value="280" step="1" /></td></tr>
-                            <tr class="member-row" id="gdzs-r-3-2"><td><span class="type-label">Газодымозащитник 2</span></td><td><input type="number" class="gdzs-in" data-team="3" data-member="2" value="275" step="1" /></td></tr>
-                            <tr class="member-row" id="gdzs-r-3-3"><td><span class="type-label">Газодымозащитник 3</span></td><td><input type="number" class="gdzs-in" data-team="3" data-member="3" value="270" step="1" /></td></tr>
-                            <tr class="member-row hidden-member" id="gdzs-r-3-4"><td><span class="type-label">Газодымозащитник 4</span></td><td><input type="number" class="gdzs-in" data-team="3" data-member="4" value="0" step="1" /></td></tr>
-                            <tr class="member-row hidden-member" id="gdzs-r-3-5"><td><span class="type-label">Газодымозащитник 5</span></td><td><input type="number" class="gdzs-in" data-team="3" data-member="5" value="0" step="1" /></td></tr>
-                        </tbody>
-                    </table></div>
-                    <div class="table-wrap" style="margin-top: 10px;"><table class="two-col">
-                        <thead><tr><th>Время включения</th><th>Значение</th></tr></thead>
-                        <tbody><tr><td>Начало работы</td><td><input type="time" class="gdzs-time" data-team="3" value="13:15" /></td></tr></tbody>
-                    </table></div>
-                    <div class="results-grid" id="gdzs-res-3"></div>
-                    <div class="summary-block" id="gdzs-summary-3"></div>
-                </div>
+                <div class="results-grid" id="gdzs-res-1"></div>
+                <div class="summary-block" id="gdzs-summary-1"></div>
             </div>
 
-            <!-- ==========================================
-                 ГАЗОСПАС (Методика с давлением у очага)
-                 ========================================== -->
-            <div class="fire-sub-content" id="main-content-gazospas">
-                
-                <h2 class="section-title">Условия работы</h2>
-                <div class="cond-tabs" id="gsp-cond-tabs">
-                    <button type="button" class="cond-btn active" data-cond="normal">Обычные (3 чел.)</button>
-                    <button type="button" class="cond-btn" data-cond="complex">Сложные (5 чел.)</button>
-                    <button type="button" class="cond-btn" data-cond="rescue">Спасание (2 чел.)</button>
-                </div>
-
-                <h2 class="section-title">Общие параметры</h2>
-                <div class="table-wrap"><table class="two-col">
-                    <thead><tr><th>Параметр</th><th>Значение</th></tr></thead>
+            <div class="gdzs-team-content" id="gdzs-team-2" style="display:none;">
+                <div class="table-wrap"><table>
+                    <thead><tr><th>Газодымозащитник</th><th>P при включении (Pн)</th></tr></thead>
+                    <tbody>
+                        <tr class="member-row" id="gdzs-r-2-1"><td><span class="type-label">Газодымозащитник 1</span></td><td><input type="number" class="gdzs-in" data-team="2" data-member="1" value="295" step="1" /></td></tr>
+                        <tr class="member-row" id="gdzs-r-2-2"><td><span class="type-label">Газодымозащитник 2</span></td><td><input type="number" class="gdzs-in" data-team="2" data-member="2" value="290" step="1" /></td></tr>
+                        <tr class="member-row" id="gdzs-r-2-3"><td><span class="type-label">Газодымозащитник 3</span></td><td><input type="number" class="gdzs-in" data-team="2" data-member="3" value="285" step="1" /></td></tr>
+                        <tr class="member-row hidden-member" id="gdzs-r-2-4"><td><span class="type-label">Газодымозащитник 4</span></td><td><input type="number" class="gdzs-in" data-team="2" data-member="4" value="0" step="1" /></td></tr>
+                        <tr class="member-row hidden-member" id="gdzs-r-2-5"><td><span class="type-label">Газодымозащитник 5</span></td><td><input type="number" class="gdzs-in" data-team="2" data-member="5" value="0" step="1" /></td></tr>
+                    </tbody>
+                </table></div>
+                <div class="table-wrap" style="margin-top: 10px;"><table class="two-col">
+                    <thead><tr><th>Время включения</th><th>Значение</th></tr></thead>
                     <tbody>
                         <tr>
-                            <td><span class="type-label">Резервное давление (Pрез)
-                                <span class="hint-icon" data-tooltip="Давление срабатывания сигнала (обычно 55 кгс/см²).">?</span>
-                            </span></td>
-                            <td><input type="number" id="gspPres" value="55" step="1" min="0" /></td>
-                        </tr>
-                        <tr>
-                            <td><span class="type-label">Средний расход (Qср)
-                                <span class="hint-icon" data-tooltip="Средний расход дыхательного газа (обычно 40 л/мин).">?</span>
-                            </span></td>
-                            <td><input type="number" id="gspQ" value="40" step="1" min="1" /></td>
-                        </tr>
-                        <tr>
-                            <td><span class="type-label">Кол-во баллонов (n)</span></td>
-                            <td><input type="number" id="gspN" value="1" step="1" min="1" /></td>
-                        </tr>
-                        <tr>
-                            <td><span class="type-label">Объём баллона (V), л</span></td>
-                            <td><input type="number" id="gspV" value="7" step="0.1" min="0.1" /></td>
+                            <td>Начало работы</td>
+                            <td>
+                                <div class="time-input-group">
+                                    <input type="time" class="gdzs-time" data-team="2" value="12:00" />
+                                    <button type="button" class="btn-now" onclick="setCurrentTime('gdzs', 2)" title="Вставить текущее время">⏱</button>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table></div>
+                <div class="results-grid" id="gdzs-res-2"></div>
+                <div class="summary-block" id="gdzs-summary-2"></div>
+            </div>
 
-                <div class="period-switch" id="gsp-team-tabs">
-                    <button type="button" class="period-btn active" data-gsp-team="1">Звено 1</button>
-                    <button type="button" class="period-btn" data-gsp-team="2">Звено 2</button>
-                    <button type="button" class="period-btn" data-gsp-team="3">Звено 3</button>
-                </div>
+            <div class="gdzs-team-content" id="gdzs-team-3" style="display:none;">
+                <div class="table-wrap"><table>
+                    <thead><tr><th>Газодымозащитник</th><th>P при включении (Pн)</th></tr></thead>
+                    <tbody>
+                        <tr class="member-row" id="gdzs-r-3-1"><td><span class="type-label">Газодымозащитник 1</span></td><td><input type="number" class="gdzs-in" data-team="3" data-member="1" value="280" step="1" /></td></tr>
+                        <tr class="member-row" id="gdzs-r-3-2"><td><span class="type-label">Газодымозащитник 2</span></td><td><input type="number" class="gdzs-in" data-team="3" data-member="2" value="275" step="1" /></td></tr>
+                        <tr class="member-row" id="gdzs-r-3-3"><td><span class="type-label">Газодымозащитник 3</span></td><td><input type="number" class="gdzs-in" data-team="3" data-member="3" value="270" step="1" /></td></tr>
+                        <tr class="member-row hidden-member" id="gdzs-r-3-4"><td><span class="type-label">Газодымозащитник 4</span></td><td><input type="number" class="gdzs-in" data-team="3" data-member="4" value="0" step="1" /></td></tr>
+                        <tr class="member-row hidden-member" id="gdzs-r-3-5"><td><span class="type-label">Газодымозащитник 5</span></td><td><input type="number" class="gdzs-in" data-team="3" data-member="5" value="0" step="1" /></td></tr>
+                    </tbody>
+                </table></div>
+                <div class="table-wrap" style="margin-top: 10px;"><table class="two-col">
+                    <thead><tr><th>Время включения</th><th>Значение</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>Начало работы</td>
+                            <td>
+                                <div class="time-input-group">
+                                    <input type="time" class="gdzs-time" data-team="3" value="13:15" />
+                                    <button type="button" class="btn-now" onclick="setCurrentTime('gdzs', 3)" title="Вставить текущее время">⏱</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table></div>
+                <div class="results-grid" id="gdzs-res-3"></div>
+                <div class="summary-block" id="gdzs-summary-3"></div>
+            </div>
+        </div>
 
-                <!-- Блоки звеньев Газоспас -->
-                <div class="gsp-team-content active" id="gsp-team-1">
-                    <div class="table-wrap"><table>
-                        <thead><tr><th>Газоспасатель</th><th>P при включении</th><th>P у очага</th></tr></thead>
-                        <tbody>
-                            <tr class="member-row" id="gsp-r-1-1"><td><span class="type-label">Газоспасатель 1</span></td><td><input type="number" class="gsp-in" data-team="1" data-member="1" value="260" step="1" /></td><td><input type="number" class="gsp-arr" data-team="1" data-member="1" value="240" step="1" /></td></tr>
-                            <tr class="member-row" id="gsp-r-1-2"><td><span class="type-label">Газоспасатель 2</span></td><td><input type="number" class="gsp-in" data-team="1" data-member="2" value="255" step="1" /></td><td><input type="number" class="gsp-arr" data-team="1" data-member="2" value="235" step="1" /></td></tr>
-                            <tr class="member-row" id="gsp-r-1-3"><td><span class="type-label">Газоспасатель 3</span></td><td><input type="number" class="gsp-in" data-team="1" data-member="3" value="250" step="1" /></td><td><input type="number" class="gsp-arr" data-team="1" data-member="3" value="230" step="1" /></td></tr>
-                            <tr class="member-row hidden-member" id="gsp-r-1-4"><td><span class="type-label">Газоспасатель 4</span></td><td><input type="number" class="gsp-in" data-team="1" data-member="4" value="0" step="1" /></td><td><input type="number" class="gsp-arr" data-team="1" data-member="4" value="0" step="1" /></td></tr>
-                            <tr class="member-row hidden-member" id="gsp-r-1-5"><td><span class="type-label">Газоспасатель 5</span></td><td><input type="number" class="gsp-in" data-team="1" data-member="5" value="0" step="1" /></td><td><input type="number" class="gsp-arr" data-team="1" data-member="5" value="0" step="1" /></td></tr>
-                        </tbody>
-                    </table></div>
-                    <div class="table-wrap" style="margin-top: 10px;"><table class="two-col">
-                        <thead><tr><th>Время включения</th><th>В пути до очага (мин)</th></tr></thead>
-                        <tbody><tr><td><input type="time" class="gsp-time" data-team="1" value="09:30" /></td><td><input type="number" class="gsp-travel" data-team="1" value="5" step="1" /></td></tr></tbody>
-                    </table></div>
-                    <div class="results-grid" id="gsp-res-1"></div>
-                    <div class="summary-block" id="gsp-summary-1"></div>
-                </div>
+        <!-- ГАЗОСПАС -->
+        <div class="fire-sub-content" id="main-content-gazospas">
+            <h2 class="section-title">Условия работы</h2>
+            <div class="cond-tabs" id="gsp-cond-tabs">
+                <button type="button" class="cond-btn active" data-cond="normal">Обычные (3)</button>
+                <button type="button" class="cond-btn" data-cond="complex">Сложные (5)</button>
+                <button type="button" class="cond-btn" data-cond="rescue">Спасание (2)</button>
+            </div>
 
-                <div class="gsp-team-content" id="gsp-team-2" style="display:none;">
-                    <div class="table-wrap"><table>
-                        <thead><tr><th>Газоспасатель</th><th>P при включении</th><th>P у очага</th></tr></thead>
-                        <tbody>
-                            <tr class="member-row" id="gsp-r-2-1"><td><span class="type-label">Газоспасатель 1</span></td><td><input type="number" class="gsp-in" data-team="2" data-member="1" value="285" step="1" /></td><td><input type="number" class="gsp-arr" data-team="2" data-member="1" value="260" step="1" /></td></tr>
-                            <tr class="member-row" id="gsp-r-2-2"><td><span class="type-label">Газоспасатель 2</span></td><td><input type="number" class="gsp-in" data-team="2" data-member="2" value="280" step="1" /></td><td><input type="number" class="gsp-arr" data-team="2" data-member="2" value="255" step="1" /></td></tr>
-                            <tr class="member-row" id="gsp-r-2-3"><td><span class="type-label">Газоспасатель 3</span></td><td><input type="number" class="gsp-in" data-team="2" data-member="3" value="275" step="1" /></td><td><input type="number" class="gsp-arr" data-team="2" data-member="3" value="250" step="1" /></td></tr>
-                            <tr class="member-row hidden-member" id="gsp-r-2-4"><td><span class="type-label">Газоспасатель 4</span></td><td><input type="number" class="gsp-in" data-team="2" data-member="4" value="0" step="1" /></td><td><input type="number" class="gsp-arr" data-team="2" data-member="4" value="0" step="1" /></td></tr>
-                            <tr class="member-row hidden-member" id="gsp-r-2-5"><td><span class="type-label">Газоспасатель 5</span></td><td><input type="number" class="gsp-in" data-team="2" data-member="5" value="0" step="1" /></td><td><input type="number" class="gsp-arr" data-team="2" data-member="5" value="0" step="1" /></td></tr>
-                        </tbody>
-                    </table></div>
-                    <div class="table-wrap" style="margin-top: 10px;"><table class="two-col">
-                        <thead><tr><th>Время включения</th><th>В пути до очага (мин)</th></tr></thead>
-                        <tbody><tr><td><input type="time" class="gsp-time" data-team="2" value="10:15" /></td><td><input type="number" class="gsp-travel" data-team="2" value="4" step="1" /></td></tr></tbody>
-                    </table></div>
-                    <div class="results-grid" id="gsp-res-2"></div>
-                    <div class="summary-block" id="gsp-summary-2"></div>
-                </div>
+            <h2 class="section-title">Общие параметры</h2>
+            <div class="table-wrap"><table class="two-col">
+                <thead><tr><th>Параметр</th><th>Значение</th></tr></thead>
+                <tbody>
+                    <tr><td><span class="type-label">Резервное давление (Pрез)</span></td><td><input type="number" id="gspPres" value="55" step="1" min="0" /></td></tr>
+                    <tr><td><span class="type-label">Средний расход (Qср)</span></td><td><input type="number" id="gspQ" value="40" step="1" min="1" /></td></tr>
+                    <tr><td><span class="type-label">Кол-во баллонов (n)</span></td><td><input type="number" id="gspN" value="1" step="1" min="1" /></td></tr>
+                    <tr><td><span class="type-label">Объём баллона (V), л</span></td><td><input type="number" id="gspV" value="7" step="0.1" min="0.1" /></td></tr>
+                </tbody>
+            </table></div>
 
-                <div class="gsp-team-content" id="gsp-team-3" style="display:none;">
-                    <div class="table-wrap"><table>
-                        <thead><tr><th>Газоспасатель</th><th>P при включении</th><th>P у очага</th></tr></thead>
-                        <tbody>
-                            <tr class="member-row" id="gsp-r-3-1"><td><span class="type-label">Газоспасатель 1</span></td><td><input type="number" class="gsp-in" data-team="3" data-member="1" value="295" step="1" /></td><td><input type="number" class="gsp-arr" data-team="3" data-member="1" value="270" step="1" /></td></tr>
-                            <tr class="member-row" id="gsp-r-3-2"><td><span class="type-label">Газоспасатель 2</span></td><td><input type="number" class="gsp-in" data-team="3" data-member="2" value="290" step="1" /></td><td><input type="number" class="gsp-arr" data-team="3" data-member="2" value="265" step="1" /></td></tr>
-                            <tr class="member-row" id="gsp-r-3-3"><td><span class="type-label">Газоспасатель 3</span></td><td><input type="number" class="gsp-in" data-team="3" data-member="3" value="285" step="1" /></td><td><input type="number" class="gsp-arr" data-team="3" data-member="3" value="260" step="1" /></td></tr>
-                            <tr class="member-row hidden-member" id="gsp-r-3-4"><td><span class="type-label">Газоспасатель 4</span></td><td><input type="number" class="gsp-in" data-team="3" data-member="4" value="0" step="1" /></td><td><input type="number" class="gsp-arr" data-team="3" data-member="4" value="0" step="1" /></td></tr>
-                            <tr class="member-row hidden-member" id="gsp-r-3-5"><td><span class="type-label">Газоспасатель 5</span></td><td><input type="number" class="gsp-in" data-team="3" data-member="5" value="0" step="1" /></td><td><input type="number" class="gsp-arr" data-team="3" data-member="5" value="0" step="1" /></td></tr>
-                        </tbody>
-                    </table></div>
-                    <div class="table-wrap" style="margin-top: 10px;"><table class="two-col">
-                        <thead><tr><th>Время включения</th><th>В пути до очага (мин)</th></tr></thead>
-                        <tbody><tr><td><input type="time" class="gsp-time" data-team="3" value="11:00" /></td><td><input type="number" class="gsp-travel" data-team="3" value="6" step="1" /></td></tr></tbody>
-                    </table></div>
-                    <div class="results-grid" id="gsp-res-3"></div>
-                    <div class="summary-block" id="gsp-summary-3"></div>
-                </div>
+            <div class="period-switch" id="gsp-team-tabs">
+                <button type="button" class="period-btn active" data-gsp-team="1">Звено 1</button>
+                <button type="button" class="period-btn" data-gsp-team="2">Звено 2</button>
+                <button type="button" class="period-btn" data-gsp-team="3">Звено 3</button>
+            </div>
+
+            <div class="gsp-team-content active" id="gsp-team-1">
+                <div class="table-wrap"><table>
+                    <thead><tr><th>Газоспасатель</th><th>P при включении</th><th>P у очага</th></tr></thead>
+                    <tbody>
+                        <tr class="member-row" id="gsp-r-1-1"><td><span class="type-label">Газоспасатель 1</span></td><td><input type="number" class="gsp-in" data-team="1" data-member="1" value="260" step="1" /></td><td><input type="number" class="gsp-arr" data-team="1" data-member="1" value="240" step="1" /></td></tr>
+                        <tr class="member-row" id="gsp-r-1-2"><td><span class="type-label">Газоспасатель 2</span></td><td><input type="number" class="gsp-in" data-team="1" data-member="2" value="255" step="1" /></td><td><input type="number" class="gsp-arr" data-team="1" data-member="2" value="235" step="1" /></td></tr>
+                        <tr class="member-row" id="gsp-r-1-3"><td><span class="type-label">Газоспасатель 3</span></td><td><input type="number" class="gsp-in" data-team="1" data-member="3" value="250" step="1" /></td><td><input type="number" class="gsp-arr" data-team="1" data-member="3" value="230" step="1" /></td></tr>
+                        <tr class="member-row hidden-member" id="gsp-r-1-4"><td><span class="type-label">Газоспасатель 4</span></td><td><input type="number" class="gsp-in" data-team="1" data-member="4" value="0" step="1" /></td><td><input type="number" class="gsp-arr" data-team="1" data-member="4" value="0" step="1" /></td></tr>
+                        <tr class="member-row hidden-member" id="gsp-r-1-5"><td><span class="type-label">Газоспасатель 5</span></td><td><input type="number" class="gsp-in" data-team="1" data-member="5" value="0" step="1" /></td><td><input type="number" class="gsp-arr" data-team="1" data-member="5" value="0" step="1" /></td></tr>
+                    </tbody>
+                </table></div>
+                <div class="table-wrap" style="margin-top: 10px;"><table class="two-col">
+                    <thead><tr><th>Время включения</th><th>В пути (мин)</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="time-input-group">
+                                    <input type="time" class="gsp-time" data-team="1" value="09:30" />
+                                    <button type="button" class="btn-now" onclick="setCurrentTime('gsp', 1)" title="Вставить текущее время">⏱</button>
+                                </div>
+                            </td>
+                            <td><input type="number" class="gsp-travel" data-team="1" value="5" step="1" /></td>
+                        </tr>
+                    </tbody>
+                </table></div>
+                <div class="results-grid" id="gsp-res-1"></div>
+                <div class="summary-block" id="gsp-summary-1"></div>
+            </div>
+
+            <div class="gsp-team-content" id="gsp-team-2" style="display:none;">
+                <div class="table-wrap"><table>
+                    <thead><tr><th>Газоспасатель</th><th>P при включении</th><th>P у очага</th></tr></thead>
+                    <tbody>
+                        <tr class="member-row" id="gsp-r-2-1"><td><span class="type-label">Газоспасатель 1</span></td><td><input type="number" class="gsp-in" data-team="2" data-member="1" value="285" step="1" /></td><td><input type="number" class="gsp-arr" data-team="2" data-member="1" value="260" step="1" /></td></tr>
+                        <tr class="member-row" id="gsp-r-2-2"><td><span class="type-label">Газоспасатель 2</span></td><td><input type="number" class="gsp-in" data-team="2" data-member="2" value="280" step="1" /></td><td><input type="number" class="gsp-arr" data-team="2" data-member="2" value="255" step="1" /></td></tr>
+                        <tr class="member-row" id="gsp-r-2-3"><td><span class="type-label">Газоспасатель 3</span></td><td><input type="number" class="gsp-in" data-team="2" data-member="3" value="275" step="1" /></td><td><input type="number" class="gsp-arr" data-team="2" data-member="3" value="250" step="1" /></td></tr>
+                        <tr class="member-row hidden-member" id="gsp-r-2-4"><td><span class="type-label">Газоспасатель 4</span></td><td><input type="number" class="gsp-in" data-team="2" data-member="4" value="0" step="1" /></td><td><input type="number" class="gsp-arr" data-team="2" data-member="4" value="0" step="1" /></td></tr>
+                        <tr class="member-row hidden-member" id="gsp-r-2-5"><td><span class="type-label">Газоспасатель 5</span></td><td><input type="number" class="gsp-in" data-team="2" data-member="5" value="0" step="1" /></td><td><input type="number" class="gsp-arr" data-team="2" data-member="5" value="0" step="1" /></td></tr>
+                    </tbody>
+                </table></div>
+                <div class="table-wrap" style="margin-top: 10px;"><table class="two-col">
+                    <thead><tr><th>Время включения</th><th>В пути (мин)</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="time-input-group">
+                                    <input type="time" class="gsp-time" data-team="2" value="10:15" />
+                                    <button type="button" class="btn-now" onclick="setCurrentTime('gsp', 2)" title="Вставить текущее время">⏱</button>
+                                </div>
+                            </td>
+                            <td><input type="number" class="gsp-travel" data-team="2" value="4" step="1" /></td>
+                        </tr>
+                    </tbody>
+                </table></div>
+                <div class="results-grid" id="gsp-res-2"></div>
+                <div class="summary-block" id="gsp-summary-2"></div>
+            </div>
+
+            <div class="gsp-team-content" id="gsp-team-3" style="display:none;">
+                <div class="table-wrap"><table>
+                    <thead><tr><th>Газоспасатель</th><th>P при включении</th><th>P у очага</th></tr></thead>
+                    <tbody>
+                        <tr class="member-row" id="gsp-r-3-1"><td><span class="type-label">Газоспасатель 1</span></td><td><input type="number" class="gsp-in" data-team="3" data-member="1" value="295" step="1" /></td><td><input type="number" class="gsp-arr" data-team="3" data-member="1" value="270" step="1" /></td></tr>
+                        <tr class="member-row" id="gsp-r-3-2"><td><span class="type-label">Газоспасатель 2</span></td><td><input type="number" class="gsp-in" data-team="3" data-member="2" value="290" step="1" /></td><td><input type="number" class="gsp-arr" data-team="3" data-member="2" value="265" step="1" /></td></tr>
+                        <tr class="member-row" id="gsp-r-3-3"><td><span class="type-label">Газоспасатель 3</span></td><td><input type="number" class="gsp-in" data-team="3" data-member="3" value="285" step="1" /></td><td><input type="number" class="gsp-arr" data-team="3" data-member="3" value="260" step="1" /></td></tr>
+                        <tr class="member-row hidden-member" id="gsp-r-3-4"><td><span class="type-label">Газоспасатель 4</span></td><td><input type="number" class="gsp-in" data-team="3" data-member="4" value="0" step="1" /></td><td><input type="number" class="gsp-arr" data-team="3" data-member="4" value="0" step="1" /></td></tr>
+                        <tr class="member-row hidden-member" id="gsp-r-3-5"><td><span class="type-label">Газоспасатель 5</span></td><td><input type="number" class="gsp-in" data-team="3" data-member="5" value="0" step="1" /></td><td><input type="number" class="gsp-arr" data-team="3" data-member="5" value="0" step="1" /></td></tr>
+                    </tbody>
+                </table></div>
+                <div class="table-wrap" style="margin-top: 10px;"><table class="two-col">
+                    <thead><tr><th>Время включения</th><th>В пути (мин)</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="time-input-group">
+                                    <input type="time" class="gsp-time" data-team="3" value="11:00" />
+                                    <button type="button" class="btn-now" onclick="setCurrentTime('gsp', 3)" title="Вставить текущее время">⏱</button>
+                                </div>
+                            </td>
+                            <td><input type="number" class="gsp-travel" data-team="3" value="6" step="1" /></td>
+                        </tr>
+                    </tbody>
+                </table></div>
+                <div class="results-grid" id="gsp-res-3"></div>
+                <div class="summary-block" id="gsp-summary-3"></div>
             </div>
         </div>
     </div>
 
-    <!-- ПОДВАЛ ПО ЦЕНТРУ -->
     <footer class="app-footer">
         ООО «РМК ПОИСК» • АСиГС
     </footer>
 </div>
 
-<div id="globalTooltip" class="global-tooltip"></div>
-
 <script>
-var THEME_KEY = 'rmk_theme_copper_v11';
+var THEME_KEY = 'rmk_theme_v13';
 
 function $(id) { return document.getElementById(id); }
-
-function fmt(val, dec = 1) {
-    if (isNaN(val) || !isFinite(val)) return '0.0';
-    return Number(val).toFixed(dec);
-}
-
+function fmt(val, dec = 1) { if (isNaN(val) || !isFinite(val)) return '0.0'; return Number(val).toFixed(dec); }
 function formatTime(hours, minutes) {
-    var h = Math.floor(hours);
-    var m = Math.round(minutes);
-    h += Math.floor(m / 60);
-    m = m % 60;
+    var h = Math.floor(hours); var m = Math.round(minutes);
+    h += Math.floor(m / 60); m = m % 60;
     if (m < 0) { m += 60; h -= 1; }
     return (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
 }
 
-function getSavedTheme() {
-    try {
-        var t = localStorage.getItem(THEME_KEY);
-        if (t === 'light' || t === 'dark') return t;
-    } catch (e) {}
-    return 'dark'; 
+/* ============================================================
+   СЕКУНДОМЕР
+   ============================================================ */
+let swInterval = null;
+let swSeconds = 0;
+let swRunning = false;
+
+function updateStopwatchDisplay() {
+    let h = Math.floor(swSeconds / 3600);
+    let m = Math.floor((swSeconds % 3600) / 60);
+    let s = swSeconds % 60;
+    $('swDisplay').textContent =
+        (h < 10 ? '0' : '') + h + ':' +
+        (m < 10 ? '0' : '') + m + ':' +
+        (s < 10 ? '0' : '') + s;
 }
 
+$('swStart').addEventListener('click', function() {
+    if (swRunning) {
+        clearInterval(swInterval);
+        this.innerHTML = '▶ Старт';
+        this.classList.remove('primary');
+    } else {
+        swInterval = setInterval(() => {
+            swSeconds++;
+            updateStopwatchDisplay();
+        }, 1000);
+        this.innerHTML = '⏸ Пауза';
+        this.classList.add('primary');
+    }
+    swRunning = !swRunning;
+});
+
+$('swReset').addEventListener('click', function() {
+    clearInterval(swInterval);
+    swSeconds = 0;
+    swRunning = false;
+    updateStopwatchDisplay();
+    $('swStart').innerHTML = '▶ Старт';
+    $('swStart').classList.remove('primary');
+});
+
+$('swFill').addEventListener('click', function() {
+    let h = Math.floor(swSeconds / 3600);
+    let m = Math.floor((swSeconds % 3600) / 60);
+    let timeStr = (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
+    
+    let activeMain = document.querySelector('#main-tabs .fire-subtab.active').dataset.main;
+    let activeTeamId = activeMain === 'gdzs' ?
+        document.querySelector('#gdzs-team-tabs .period-btn.active').dataset.gdzsTeam :
+        document.querySelector('#gsp-team-tabs .period-btn.active').dataset.gspTeam;
+
+    let timeInput = document.querySelector('.' + activeMain + '-time[data-team="' + activeTeamId + '"]');
+    if (timeInput) {
+        timeInput.value = timeStr;
+        timeInput.dispatchEvent(new Event('input', { bubbles: true }));
+        
+        // Краткая визуальная вспышка при успешной записи
+        timeInput.style.borderColor = '#4CAF50';
+        setTimeout(() => { timeInput.style.borderColor = 'var(--border-strong)'; }, 600);
+    }
+});
+
+/* Вставить текущее системное время */
+window.setCurrentTime = function(prefix, teamId) {
+    let now = new Date();
+    let h = now.getHours();
+    let m = now.getMinutes();
+    let timeStr = (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
+    
+    let timeInput = document.querySelector('.' + prefix + '-time[data-team="' + teamId + '"]');
+    if (timeInput) {
+        timeInput.value = timeStr;
+        timeInput.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+};
+
+/* ============================================================
+   ОСТАЛЬНАЯ ЛОГИКА
+   ============================================================ */
 function applyTheme(theme) {
     if (theme === 'light') document.body.classList.add('light');
     else document.body.classList.remove('light');
-    var tb = $('themeSwitcher');
-    if (tb) tb.textContent = (theme === 'light') ? '🌙' : '☀️';
+    var tb = $('themeSwitcher'); if (tb) tb.textContent = (theme === 'light') ? '🌙' : '☀️';
 }
 
-/* ============================================================
-   ПОДСКАЗКИ
-   ============================================================ */
-var tooltipEl = $('globalTooltip');
-
-function showTooltip(e) {
-    var text = this.getAttribute('data-tooltip');
-    if (!text) return;
-    tooltipEl.textContent = text;
-    tooltipEl.classList.remove('arrow-top');
-    tooltipEl.classList.add('visible');
-    requestAnimationFrame(function() {
-        var rect = this.getBoundingClientRect();
-        var tRect = tooltipEl.getBoundingClientRect();
-        var top = rect.top - tRect.height - 10;
-        var left = rect.left + (rect.width / 2) - (tRect.width / 2);
-        if (left < 10) left = 10;
-        if (left + tRect.width > window.innerWidth - 10) left = window.innerWidth - tRect.width - 10;
-        if (top < 10) {
-            top = rect.bottom + 10;
-            tooltipEl.classList.add('arrow-top');
-        }
-        tooltipEl.style.top = top + 'px';
-        tooltipEl.style.left = left + 'px';
-    }.bind(this));
-}
-
-function hideTooltip() { tooltipEl.classList.remove('visible'); }
-
-document.querySelectorAll('.hint-icon').forEach(function(el) {
-    el.addEventListener('mouseenter', showTooltip);
-    el.addEventListener('mouseleave', hideTooltip);
-    el.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        showTooltip.call(this, e);
-        clearTimeout(el._tooltipTimer);
-        el._tooltipTimer = setTimeout(hideTooltip, 3000);
-    }, {passive: false});
-});
-
-/* ============================================================
-   ДИНАМИКА УСЛОВИЙ
-   ============================================================ */
 var currentCond = { gdzs: 'normal', gsp: 'normal' };
 
 function updateConditions(prefix, cond) {
     currentCond[prefix] = cond;
-    var maxMembers = 5;
-    if (cond === 'normal') maxMembers = 3;
-    if (cond === 'rescue') maxMembers = 2;
-
+    var maxMembers = (cond === 'complex') ? 5 : (cond === 'rescue' ? 2 : 3);
     for (var t = 1; t <= 3; t++) {
         for (var m = 1; m <= 5; m++) {
             var row = $(prefix + '-r-' + t + '-' + m);
             if (row) {
-                if (m <= maxMembers) {
-                    row.classList.remove('hidden-member');
-                } else {
-                    row.classList.add('hidden-member');
-                }
+                if (m <= maxMembers) row.classList.remove('hidden-member');
+                else row.classList.add('hidden-member');
             }
         }
     }
-    if (prefix === 'gdzs') calcGDZS();
-    else calcGSP();
+    if (prefix === 'gdzs') calcGDZS(); else calcGSP();
 }
 
-/* ============================================================
-   РАСЧЕТ ГДЗС (Без давления у очага)
-   ============================================================ */
 function calcGDZS() {
     for (var i = 1; i <= 3; i++) {
         var prefix = 'gdzs';
-        var NEl = $(prefix + 'N');
-        var VEl = $(prefix + 'V');
-        if (!NEl || !VEl) return;
-
-        var n = parseFloat(NEl.value) || 1;
-        var V = parseFloat(VEl.value) || 6.8;
+        var n = parseFloat($(prefix + 'N').value) || 1;
+        var V = parseFloat($(prefix + 'V').value) || 6.8;
         var V_total = n * V;
 
         var cond = currentCond[prefix];
@@ -939,17 +755,14 @@ function calcGDZS() {
 
         for (var j = 1; j <= maxMembers; j++) {
             var inEl = document.querySelector('.' + prefix + '-in[data-team="' + i + '"][data-member="' + j + '"]');
-            if (inEl) {
-                var p_in = parseFloat(inEl.value);
-                if (!isNaN(p_in) && p_in > 0) P_in_arr.push(p_in);
-            }
+            if (inEl) { var p_in = parseFloat(inEl.value); if (!isNaN(p_in) && p_in > 0) P_in_arr.push(p_in); }
         }
 
         var resContainer = $(prefix + '-res-' + i);
         var summaryContainer = $(prefix + '-summary-' + i);
 
         if (P_in_arr.length === 0) {
-            if (resContainer) resContainer.innerHTML = '<div style="grid-column: 1 / -1; padding: 20px; text-align: center; color: var(--text-muted);">Введите P при включении (Pн)</div>';
+            if (resContainer) resContainer.innerHTML = '<div style="grid-column: 1 / -1; padding: 20px; text-align: center; color: var(--text-muted);">Введите P при включении</div>';
             if (summaryContainer) summaryContainer.innerHTML = '';
             continue;
         }
@@ -974,13 +787,13 @@ function calcGDZS() {
                 <div class="result-card">
                     <h3>Расчётные данные</h3>
                     <div class="result-row"><span class="result-label">Мин. P при включении (Pн)</span><span class="result-value">${fmt(P_min_in)} кгс/см²</span></div>
-                    <div class="result-row"><span class="result-label">Макс. падение (Pmax.пад)</span><span class="result-value">${fmt(P_max_pad)} кгс/см²</span></div>
+                    <div class="result-row"><span class="result-label">Макс. падение</span><span class="result-value">${fmt(P_max_pad)} кгс/см²</span></div>
                     <div class="result-row"><span class="result-label">Контрольное P выхода</span><span class="result-value accent">${fmt(P_k_vyh)} кгс/см²</span></div>
                 </div>
                 <div class="result-card">
                     <h3>Время работы</h3>
-                    <div class="result-row"><span class="result-label">Общее время (Tобщ)</span><span class="result-value">${fmt(T_obsh)} мин</span></div>
-                    <div class="result-row"><span class="result-label">Время до возврата (ΔT)</span><span class="result-value">${fmt(delta_T)} мин</span></div>
+                    <div class="result-row"><span class="result-label">Общее время</span><span class="result-value">${fmt(T_obsh)} мин</span></div>
+                    <div class="result-row"><span class="result-label">Время до возврата</span><span class="result-value">${fmt(delta_T)} мин</span></div>
                     <div class="result-row" style="margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border-strong);">
                         <span class="result-label">Команда на возврат</span>
                         <span class="result-value accent">${vyhodTimeStr}</span>
@@ -992,29 +805,12 @@ function calcGDZS() {
         if (summaryContainer) {
             summaryContainer.innerHTML = `
                 <div class="summary-title">Ход решения (ГДЗС)</div>
-                <div class="summary-step">
-                    <strong>1. Максимальное падение давления:</strong> 
-                    <span class="val">Pmax.пад = ${fmt(P_max_pad)} кгс/см²</span>
-                    <span class="formula">Pн / 3 = ${fmt(P_min_in)} / 3</span>
-                </div>
-                <div class="summary-step">
-                    <strong>2. Контрольное давление выхода:</strong> 
-                    <span class="val">Pк.вых = ${fmt(P_k_vyh)} кгс/см²</span>
-                    <span class="formula">Pн - Pmax.пад = ${fmt(P_min_in)} - ${fmt(P_max_pad)}</span>
-                </div>
-                <div class="summary-step">
-                    <strong>3. Время до подачи команды на возврат:</strong> 
-                    <span class="val">ΔT = ${fmt(delta_T)} мин</span>
-                    <span class="formula">(Pmax.пад * Vобщ) / 45 = (${fmt(P_max_pad)} * ${fmt(V_total)}) / 45</span>
-                </div>
-                <div class="summary-step">
-                    <strong>4. Общее время работы:</strong> 
-                    <span class="val">Tобщ = ${fmt(T_obsh)} мин</span>
-                    <span class="formula">(Pн * Vобщ) / 45 = (${fmt(P_min_in)} * ${fmt(V_total)}) / 45</span>
-                </div>
+                <div class="summary-step"><strong>1. Максимальное падение давления:</strong> <span class="val">${fmt(P_max_pad)} кгс/см²</span><span class="formula">Pн / 3 = ${fmt(P_min_in)} / 3</span></div>
+                <div class="summary-step"><strong>2. Контрольное давление выхода:</strong> <span class="val">${fmt(P_k_vyh)} кгс/см²</span><span class="formula">Pн - Pmax.пад = ${fmt(P_min_in)} - ${fmt(P_max_pad)}</span></div>
+                <div class="summary-step"><strong>3. Время до подачи команды на возврат:</strong> <span class="val">${fmt(delta_T)} мин</span><span class="formula">(Pmax.пад * Vобщ) / 45 = (${fmt(P_max_pad)} * ${fmt(V_total)}) / 45</span></div>
+                <div class="summary-step"><strong>4. Общее время работы:</strong> <span class="val">${fmt(T_obsh)} мин</span><span class="formula">(Pн * Vобщ) / 45 = (${fmt(P_min_in)} * ${fmt(V_total)}) / 45</span></div>
                 <div class="summary-step" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color);">
-                    <strong>Время подачи команды на возвращение:</strong> 
-                    <span class="val" style="font-size: 1.1rem; color: var(--accent);">${vyhodTimeStr}</span>
+                    <strong>Время подачи команды на возвращение:</strong> <span class="val" style="font-size: 1.1rem; color: var(--accent);">${vyhodTimeStr}</span>
                     <span class="formula">Время включения (${entryTimeStr}) + ΔT (${fmt(delta_T)} мин)</span>
                 </div>
             `;
@@ -1022,40 +818,26 @@ function calcGDZS() {
     }
 }
 
-/* ============================================================
-   РАСЧЕТ ГАЗОСПАС (С давлением у очага)
-   ============================================================ */
 function calcGSP() {
     for (var i = 1; i <= 3; i++) {
         var prefix = 'gsp';
-        var PresEl = $(prefix + 'Pres');
-        var QEl = $(prefix + 'Q');
-        var NEl = $(prefix + 'N');
-        var VEl = $(prefix + 'V');
-        if (!PresEl || !QEl || !NEl || !VEl) return;
-
-        var Pres = parseFloat(PresEl.value) || 55;
-        var Q = parseFloat(QEl.value) || 40;
-        var n = parseFloat(NEl.value) || 1;
-        var V = parseFloat(VEl.value) || 7;
+        var Pres = parseFloat($(prefix + 'Pres').value) || 55;
+        var Q = parseFloat($(prefix + 'Q').value) || 40;
+        var n = parseFloat($(prefix + 'N').value) || 1;
+        var V = parseFloat($(prefix + 'V').value) || 7;
 
         var cond = currentCond[prefix];
         var maxMembers = (cond === 'complex') ? 5 : (cond === 'rescue' ? 2 : 3);
-        var P_in_arr = [];
-        var max_drop = 0;
+        var P_in_arr = [], max_drop = 0;
 
         for (var j = 1; j <= maxMembers; j++) {
             var inEl = document.querySelector('.' + prefix + '-in[data-team="' + i + '"][data-member="' + j + '"]');
             var arrEl = document.querySelector('.' + prefix + '-arr[data-team="' + i + '"][data-member="' + j + '"]');
             if (inEl && arrEl) {
-                var p_in = parseFloat(inEl.value);
-                var p_arr = parseFloat(arrEl.value);
+                var p_in = parseFloat(inEl.value); var p_arr = parseFloat(arrEl.value);
                 if (!isNaN(p_in) && p_in > 0) {
                     P_in_arr.push(p_in);
-                    if (!isNaN(p_arr)) {
-                        var drop = p_in - p_arr;
-                        if (drop > max_drop) max_drop = drop;
-                    }
+                    if (!isNaN(p_arr)) { var drop = p_in - p_arr; if (drop > max_drop) max_drop = drop; }
                 }
             }
         }
@@ -1064,19 +846,17 @@ function calcGSP() {
         var summaryContainer = $(prefix + '-summary-' + i);
 
         if (P_in_arr.length === 0) {
-            if (resContainer) resContainer.innerHTML = '<div style="grid-column: 1 / -1; padding: 20px; text-align: center; color: var(--text-muted);">Введите P при включении (Pн)</div>';
+            if (resContainer) resContainer.innerHTML = '<div style="grid-column: 1 / -1; padding: 20px; text-align: center; color: var(--text-muted);">Введите P при включении</div>';
             if (summaryContainer) summaryContainer.innerHTML = '';
             continue;
         }
 
         var minP_in = Math.min.apply(null, P_in_arr);
         var P_dvizh = max_drop > 0 ? max_drop : 0;
-        var T_obsh = ((minP_in - Pres) * n * V) / Q;
-        if (T_obsh < 0) T_obsh = 0;
+        var T_obsh = ((minP_in - Pres) * n * V) / Q; if (T_obsh < 0) T_obsh = 0;
         var T_razv = T_obsh / 3;
         var P_vozvr = 2 * P_dvizh + Pres;
-        var T_rab = ((minP_in - (P_dvizh + P_vozvr)) * n * V) / Q;
-        if (T_rab < 0) T_rab = 0;
+        var T_rab = ((minP_in - (P_dvizh + P_vozvr)) * n * V) / Q; if (T_rab < 0) T_rab = 0;
 
         var timeInput = document.querySelector('.' + prefix + '-time[data-team="' + i + '"]');
         var travelInput = document.querySelector('.' + prefix + '-travel[data-team="' + i + '"]');
@@ -1093,18 +873,17 @@ function calcGSP() {
             resContainer.innerHTML = `
                 <div class="result-card">
                     <h3>Расчётные данные</h3>
-                    <div class="result-row"><span class="result-label">Мин. P при включении (Pн)</span><span class="result-value">${fmt(minP_in)} кгс/см²</span></div>
-                    <div class="result-row"><span class="result-label">P на движение (Pдвиж)</span><span class="result-value">${fmt(P_dvizh)} кгс/см²</span></div>
+                    <div class="result-row"><span class="result-label">Мин. P при включении</span><span class="result-value">${fmt(minP_in)} кгс/см²</span></div>
+                    <div class="result-row"><span class="result-label">P на движение</span><span class="result-value">${fmt(P_dvizh)} кгс/см²</span></div>
                     <div class="result-row"><span class="result-label">Контрольное P возврата</span><span class="result-value accent">${fmt(P_vozvr)} кгс/см²</span></div>
                 </div>
                 <div class="result-card">
                     <h3>Время работы</h3>
-                    <div class="result-row"><span class="result-label">Общее время (Tобщ)</span><span class="result-value">${fmt(T_obsh)} мин</span></div>
-                    <div class="result-row"><span class="result-label">Время на разведку (Tразв)</span><span class="result-value">${fmt(T_razv)} мин</span></div>
-                    <div class="result-row"><span class="result-label">Время у очага (Tраб)</span><span class="result-value">${fmt(T_rab)} мин</span></div>
+                    <div class="result-row"><span class="result-label">Общее время</span><span class="result-value">${fmt(T_obsh)} мин</span></div>
+                    <div class="result-row"><span class="result-label">Время на разведку</span><span class="result-value">${fmt(T_razv)} мин</span></div>
+                    <div class="result-row"><span class="result-label">Время у очага</span><span class="result-value">${fmt(T_rab)} мин</span></div>
                     <div class="result-row" style="margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border-strong);">
-                        <span class="result-label">Команда на возврат</span>
-                        <span class="result-value accent">${returnTimeStr}</span>
+                        <span class="result-label">Команда на возврат</span><span class="result-value accent">${returnTimeStr}</span>
                     </div>
                 </div>
             `;
@@ -1113,183 +892,95 @@ function calcGSP() {
         if (summaryContainer) {
             summaryContainer.innerHTML = `
                 <div class="summary-title">Ход решения (Газоспас)</div>
-                <div class="summary-step">
-                    <strong>1. Общее время:</strong> 
-                    <span class="val">Tобщ = ${fmt(T_obsh)} мин</span>
-                    <span class="formula">(Pн - Pрез) * n * V / Qср = (${fmt(minP_in)} - ${fmt(Pres)}) * ${fmt(n)} * ${fmt(V)} / ${fmt(Q)}</span>
-                </div>
-                <div class="summary-step">
-                    <strong>2. Время на разведку:</strong> 
-                    <span class="val">Tразв = ${fmt(T_razv)} мин</span>
-                    <span class="formula">Tобщ / 3 = ${fmt(T_obsh)} / 3</span>
-                </div>
-                <div class="summary-step">
-                    <strong>3. Давление на движение:</strong> 
-                    <span class="val">Pдвиж = ${fmt(P_dvizh)} кгс/см²</span>
-                    <span class="formula">Максимальная разница (Pн - Pприб)</span>
-                </div>
-                <div class="summary-step">
-                    <strong>4. Контрольное давление возврата:</strong> 
-                    <span class="val">Pвозвр = ${fmt(P_vozvr)} кгс/см²</span>
-                    <span class="formula">2 * Pдвиж + Pрез = 2 * ${fmt(P_dvizh)} + ${fmt(Pres)}</span>
-                </div>
-                <div class="summary-step">
-                    <strong>5. Время работы у очага:</strong> 
-                    <span class="val">Tраб = ${fmt(T_rab)} мин</span>
-                    <span class="formula">(Pн - (Pдвиж + Pвозвр)) * n * V / Qср</span>
-                </div>
+                <div class="summary-step"><strong>1. Общее время:</strong> <span class="val">${fmt(T_obsh)} мин</span><span class="formula">(Pн - Pрез) * n * V / Qср</span></div>
+                <div class="summary-step"><strong>2. Время на разведку:</strong> <span class="val">${fmt(T_razv)} мин</span><span class="formula">Tобщ / 3</span></div>
+                <div class="summary-step"><strong>3. Давление на движение:</strong> <span class="val">${fmt(P_dvizh)} кгс/см²</span><span class="formula">Макс. разница (Pн - Pприб)</span></div>
+                <div class="summary-step"><strong>4. Контрольное давление возврата:</strong> <span class="val">${fmt(P_vozvr)} кгс/см²</span><span class="formula">2 * Pдвиж + Pрез</span></div>
+                <div class="summary-step"><strong>5. Время работы у очага:</strong> <span class="val">${fmt(T_rab)} мин</span><span class="formula">(Pн - (Pдвиж + Pвозвр)) * n * V / Qср</span></div>
                 <div class="summary-step" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color);">
-                    <strong>Время подачи команды на возвращение:</strong> 
-                    <span class="val" style="font-size: 1.1rem; color: var(--accent);">${returnTimeStr}</span>
-                    <span class="formula">Время включения (${entryTimeStr}) + В пути (${travelTime} мин) + Tразв (${fmt(T_razv)} мин)</span>
+                    <strong>Время возврата:</strong> <span class="val" style="font-size: 1.1rem; color: var(--accent);">${returnTimeStr}</span><span class="formula">Время включения + В пути + Tразв</span>
                 </div>
             `;
         }
     }
 }
 
-/* ============================================================
-   ИНИЦИАЛИЗАЦИЯ
-   ============================================================ */
 document.addEventListener('DOMContentLoaded', function() {
-    applyTheme(getSavedTheme());
+    applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
 
     $('themeSwitcher').addEventListener('click', function() {
-        var isLight = document.body.classList.contains('light');
-        var nt = isLight ? 'dark' : 'light';
-        applyTheme(nt);
-        try { localStorage.setItem(THEME_KEY, nt); } catch(e) {}
+        var nt = document.body.classList.contains('light') ? 'dark' : 'light';
+        applyTheme(nt); localStorage.setItem(THEME_KEY, nt);
     });
-
-    var mainTitle = $('mainTitle');
-    var mainSubtitle = document.querySelector('.calc-header-title .subtitle');
 
     document.querySelectorAll('#main-tabs .fire-subtab').forEach(function(btn) {
         btn.addEventListener('click', function() {
             document.querySelectorAll('#main-tabs .fire-subtab').forEach(function(b) { b.classList.remove('active'); });
             btn.classList.add('active');
             document.querySelectorAll('.fire-sub-content').forEach(function(c) { c.classList.remove('active'); });
-            
             var mainId = btn.dataset.main;
             $('main-content-' + mainId).classList.add('active');
-            
-            mainTitle.textContent = (mainId === 'gdzs') ? 'Расчёт ГДЗС' : 'Расчёт Газоспас';
+            $('mainTitle').textContent = (mainId === 'gdzs') ? 'Расчёт ГДЗС' : 'Расчёт Газоспас';
         });
     });
 
-    document.querySelectorAll('#gdzs-team-tabs .period-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('#gdzs-team-tabs .period-btn').forEach(function(b) { b.classList.remove('active'); });
-            btn.classList.add('active');
-            document.querySelectorAll('.gdzs-team-content').forEach(function(c) { c.style.display = 'none'; });
-            $('gdzs-team-' + btn.dataset.gdzsTeam).style.display = 'block';
+    ['gdzs', 'gsp'].forEach(function(prefix) {
+        document.querySelectorAll('#' + prefix + '-team-tabs .period-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('#' + prefix + '-team-tabs .period-btn').forEach(function(b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+                document.querySelectorAll('.' + prefix + '-team-content').forEach(function(c) { c.style.display = 'none'; });
+                $(prefix + '-team-' + (prefix === 'gdzs' ? btn.dataset.gdzsTeam : btn.dataset.gspTeam)).style.display = 'block';
+            });
         });
-    });
-
-    document.querySelectorAll('#gsp-team-tabs .period-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('#gsp-team-tabs .period-btn').forEach(function(b) { b.classList.remove('active'); });
-            btn.classList.add('active');
-            document.querySelectorAll('.gsp-team-content').forEach(function(c) { c.style.display = 'none'; });
-            $('gsp-team-' + btn.dataset.gspTeam).style.display = 'block';
-        });
-    });
-
-    document.querySelectorAll('#gdzs-cond-tabs .cond-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('#gdzs-cond-tabs .cond-btn').forEach(function(b) { b.classList.remove('active'); });
-            btn.classList.add('active');
-            updateConditions('gdzs', btn.dataset.cond);
-        });
-    });
-
-    document.querySelectorAll('#gsp-cond-tabs .cond-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('#gsp-cond-tabs .cond-btn').forEach(function(b) { b.classList.remove('active'); });
-            btn.classList.add('active');
-            updateConditions('gsp', btn.dataset.cond);
+        document.querySelectorAll('#' + prefix + '-cond-tabs .cond-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('#' + prefix + '-cond-tabs .cond-btn').forEach(function(b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+                updateConditions(prefix, btn.dataset.cond);
+            });
         });
     });
 
     var allInputs = document.querySelectorAll('#calcForm input');
     var backupData = null;
-    var undoBtn = $('btnUndo');
-    var resetBtn = $('btnReset');
 
-    resetBtn.addEventListener('click', function() {
-        backupData = [];
-        allInputs.forEach(function(inp) { backupData.push(inp.value); });
-
-        var activeMainBtn = document.querySelector('#main-tabs .fire-subtab.active');
-        var mainId = activeMainBtn.dataset.main;
-        var activeTeamBtn = document.querySelector('#' + (mainId === 'gdzs' ? 'gdzs-team-tabs' : 'gsp-team-tabs') + ' .period-btn.active');
-        var teamId = activeTeamBtn.getAttribute(mainId === 'gdzs' ? 'data-gdzs-team' : 'data-gsp-team');
+    $('btnReset').addEventListener('click', function() {
+        backupData = []; allInputs.forEach(function(inp) { backupData.push(inp.value); });
+        var mainId = document.querySelector('#main-tabs .fire-subtab.active').dataset.main;
+        var teamBtn = document.querySelector('#' + (mainId === 'gdzs' ? 'gdzs-team-tabs' : 'gsp-team-tabs') + ' .period-btn.active');
+        var teamId = teamBtn.getAttribute(mainId === 'gdzs' ? 'data-gdzs-team' : 'data-gsp-team');
         var prefix = mainId === 'gdzs' ? 'gdzs' : 'gsp';
 
-        var teamInputsToReset = document.querySelectorAll('.' + prefix + '-in[data-team="' + teamId + '"], .' + prefix + '-arr[data-team="' + teamId + '"], .' + prefix + '-travel[data-team="' + teamId + '"]');
-        var timeInputsToReset = document.querySelectorAll('.' + prefix + '-time[data-team="' + teamId + '"]');
-
-        teamInputsToReset.forEach(function(inp) { inp.value = '0'; });
-        timeInputsToReset.forEach(function(inp) { inp.value = ''; });
-
-        calcGDZS();
-        calcGSP();
-        undoBtn.disabled = false;
+        document.querySelectorAll('.' + prefix + '-in[data-team="' + teamId + '"], .' + prefix + '-arr[data-team="' + teamId + '"], .' + prefix + '-travel[data-team="' + teamId + '"]').forEach(function(inp) { inp.value = '0'; });
+        document.querySelectorAll('.' + prefix + '-time[data-team="' + teamId + '"]').forEach(function(inp) { inp.value = ''; });
+        calcGDZS(); calcGSP();
+        $('btnUndo').disabled = false;
     });
 
-    undoBtn.addEventListener('click', function() {
+    $('btnUndo').addEventListener('click', function() {
         if (!backupData) return;
-        allInputs.forEach(function(inp, index) {
-            if (backupData[index] !== undefined) inp.value = backupData[index];
-        });
-        calcGDZS();
-        calcGSP();
-        undoBtn.disabled = true;
-        backupData = null;
+        allInputs.forEach(function(inp, index) { if (backupData[index] !== undefined) inp.value = backupData[index]; });
+        calcGDZS(); calcGSP();
+        $('btnUndo').disabled = true; backupData = null;
     });
 
     allInputs.forEach(function(inp) {
-        inp.addEventListener('input', function() {
-            if (!undoBtn.disabled) {
-                undoBtn.disabled = true;
-                backupData = null;
-            }
-        });
+        inp.addEventListener('input', function() { if (!$('btnUndo').disabled) { $('btnUndo').disabled = true; backupData = null; } });
     });
 
     document.querySelectorAll('#main-content-gdzs input').forEach(function(inp) { inp.addEventListener('input', calcGDZS); });
     document.querySelectorAll('#main-content-gazospas input').forEach(function(inp) { inp.addEventListener('input', calcGSP); });
-
-    document.querySelectorAll('input[type="number"]').forEach(function(inp) {
-        inp.addEventListener('focus', function() {
-            if (this.value === '0' || this.value === '0.0') this.value = '';
-        });
-        inp.addEventListener('blur', function() {
-            if (this.value === '') {
-                this.value = '0';
-                if (this.closest('#main-content-gdzs')) calcGDZS();
-                if (this.closest('#main-content-gazospas')) calcGSP();
-            }
-        });
-    });
 
     updateConditions('gdzs', 'normal');
     updateConditions('gsp', 'normal');
 });
 </script>
 
-<!-- СКРИПТ ДЛЯ ОФЛАЙН-РАБОТЫ (SERVICE WORKER) -->
+<!-- ОФЛАЙН РЕЖИМ -->
 <script>
   if ('serviceWorker' in navigator && (location.protocol === 'http:' || location.protocol === 'https:')) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then(registration => {
-          console.log('ServiceWorker успешно зарегистрирован:', registration.scope);
-        })
-        .catch(error => {
-          console.log('Ошибка регистрации ServiceWorker:', error);
-        });
-    });
+    window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js'); });
   }
 </script>
 
