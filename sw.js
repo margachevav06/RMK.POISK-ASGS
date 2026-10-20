@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rmk-gdzs-v1';
+const CACHE_NAME = 'rmk-gdzs-v12';
 const ASSETS = [
   './',
   './index.html',
