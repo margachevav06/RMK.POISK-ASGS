@@ -21,14 +21,15 @@
     --bg-result:       #121212;
     --bg-summary:      #0D0D0D;
 
-    --border-color:  #2A2A2A;
-    --border-strong: #3A3A3A;
+    --border-color:  #222222;
+    --border-strong: #333333;
 
     --text-primary:   #F2F2F2;
-    --text-secondary: #B0B0B0;
-    --text-muted:     #707070;
+    --text-secondary: #A0A0A0;
+    --text-muted:     #666666;
 
     --accent:         #C86A32;
+    --accent-hover:   #E08343;
     --accent-bg:      rgba(200, 106, 50, 0.12);
 
     --transition: 0.2s ease;
@@ -43,14 +44,15 @@ body.light {
     --bg-result:       #EFEFEF;
     --bg-summary:      #E0E0E0;
 
-    --border-color:  #C8C8C8;
+    --border-color:  #D0D0D0;
     --border-strong: #B0B0B0;
 
     --text-primary:   #111111;
     --text-secondary: #3A3A3A;
-    --text-muted:     #6A6A6A;
+    --text-muted:     #777777;
 
     --accent:         #A85422;
+    --accent-hover:   #8A4318;
     --accent-bg:      rgba(168, 84, 34, 0.10);
 }
 
@@ -82,15 +84,16 @@ input[type="number"], input[type="time"] {
 }
 
 /* ============================================================
-   3. ТОПБАР
+   3. ТОПБАР (ИСПРАВЛЕНО: Логотип слева, кнопки справа)
    ============================================================ */
 .topbar {
     display: flex;
     align-items: center;
+    justify-content: space-between; /* Элементы по краям */
     gap: 12px;
     margin-bottom: 20px;
     padding-bottom: 12px;
-    border-bottom: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-color);
     position: relative;
 }
 .topbar::after {
@@ -103,46 +106,16 @@ input[type="number"], input[type="time"] {
     background: var(--accent);
 }
 
-.topbar-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: inherit;
-    flex-shrink: 0;
-}
+.topbar-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; flex-shrink: 0; }
+.logo-img { max-height: 36px; width: auto; object-fit: contain; display: block; }
+.logo-text { color: var(--accent); white-space: nowrap; font-weight: 600; letter-spacing: 0.12em; font-size: 1rem; }
 
-.logo-img { max-height: 36px; width: auto; display: block; }
-
-.logo-text {
-    color: var(--accent);
-    white-space: nowrap;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    font-size: 1rem;
-}
-
-.topbar-actions {
-    display: flex;
-    gap: 6px;
-    margin-left: auto;
-    align-items: center;
-}
-
+.topbar-actions { display: flex; gap: 6px; align-items: center; }
 .btn-action {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    padding: 0;
-    width: 32px;
-    height: 32px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
+    background: var(--bg-card); border: 1px solid var(--border-strong);
+    color: var(--text-secondary); padding: 0; width: 32px; height: 32px;
+    border-radius: 4px; cursor: pointer; font-size: 1rem; display: inline-flex;
+    align-items: center; justify-content: center; transition: var(--transition);
 }
 .btn-action:hover:not(:disabled) { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
 .btn-action:disabled { opacity: 0.3; cursor: not-allowed; }
@@ -158,12 +131,12 @@ input[type="number"], input[type="time"] {
     background: var(--bg-card);
     border-radius: 8px;
     padding: 24px 28px 32px;
-    border: 1px solid var(--border-strong);
+    border: 1px solid var(--border-color);
     border-top: 3px solid var(--accent);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
 }
 
-.section-title { font-size: 1rem; font-weight: 500; margin: 24px 0 10px; color: var(--text-secondary); }
+.section-title { font-size: 0.95rem; font-weight: 500; margin: 24px 0 10px; color: var(--text-secondary); }
 .section-title:first-of-type { margin-top: 0; }
 
 /* ============================================================
@@ -178,7 +151,7 @@ input[type="number"], input[type="time"] {
     font-size: 0.85rem; font-weight: 500; cursor: pointer; border-radius: 4px;
     font-family: inherit; flex: 1 1 auto; text-align: center; transition: all 0.2s ease;
 }
-.fire-subtab.active, .cond-btn.active { color: var(--accent); background: var(--bg-card); font-weight: 600; }
+.fire-subtab.active, .cond-btn.active { color: var(--accent); background: var(--bg-card); font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
 
 .period-switch { display: flex; gap: 6px; margin: 10px 0 16px; flex-wrap: wrap; }
 .period-btn {
@@ -193,67 +166,69 @@ input[type="number"], input[type="time"] {
 .fire-sub-content.active { display: block; }
 
 /* ============================================================
-   6. СЕКУНДОМЕР
+   6. СЕКУНДОМЕР (Прилипающий к верху и уменьшенный)
    ============================================================ */
 .stopwatch-panel {
+    position: sticky;
+    top: 0; /* Прилипает к верхнему краю экрана */
+    z-index: 100; /* Всегда поверх остального контента */
+    
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--bg-input);
-    border: 1px solid var(--accent);
+    background: var(--bg-card); /* Плотный фон, чтобы перекрывать контент */
+    border: 1px solid var(--border-strong);
     border-radius: 8px;
-    padding: 10px 16px;
+    padding: 6px 12px;
     margin-bottom: 20px;
     flex-wrap: wrap;
-    gap: 12px;
-    box-shadow: 0 4px 12px rgba(200, 106, 50, 0.1);
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); /* Тень для эффекта парения */
 }
-.stopwatch-time {
+.stopwatch-display {
     font-family: var(--font-mono);
-    font-size: 1.8rem;
+    font-size: 1.25rem; /* Уменьшено с 1.6rem */
     font-weight: 700;
     color: var(--accent);
     letter-spacing: 0.05em;
-    text-shadow: 0 0 10px rgba(200, 106, 50, 0.3);
 }
 .stopwatch-controls {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
 }
 .btn-sw {
-    background: var(--bg-card);
+    background: var(--bg-input);
     border: 1px solid var(--border-strong);
     color: var(--text-primary);
-    padding: 8px 16px;
-    border-radius: 6px;
+    padding: 4px 12px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.8rem; /* Уменьшено */
     font-weight: 500;
     transition: var(--transition);
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
 }
 .btn-sw:hover { border-color: var(--accent); color: var(--accent); }
 .btn-sw.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
 .btn-sw.primary:hover { background: var(--accent-hover); }
-.btn-sw.accent { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
-.btn-sw.accent:hover { background: var(--accent); color: #fff; }
+.btn-sw.danger { color: #E57373; border-color: #E57373; }
+.btn-sw.danger:hover { background: rgba(229, 115, 115, 0.1); }
 
 /* ============================================================
    7. ТАБЛИЦЫ
    ============================================================ */
 .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9rem; table-layout: fixed; }
-th { color: var(--text-muted); font-weight: 500; font-size: 0.75rem; padding: 10px 4px; text-align: center; border-bottom: 2px solid var(--border-strong); }
+th { color: var(--text-muted); font-weight: 500; font-size: 0.75rem; padding: 10px 4px; text-align: center; border-bottom: 1px solid var(--border-strong); }
 td { padding: 8px 4px; text-align: center; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
 tr:last-child td { border-bottom: none; }
 
 table th:first-child, table td:first-child { width: 40%; }
 table th:nth-child(2), table td:nth-child(2) { width: 30%; }
 table th:last-child, table td:last-child { width: 30%; }
-
 table.two-col th:first-child, table.two-col td:first-child { width: 50%; }
 table.two-col th:last-child, table.two-col td:last-child { width: 50%; }
 
@@ -274,53 +249,82 @@ table input[type="number"], table input[type="time"] {
     font-size: 0.95rem; background: var(--bg-input); color: var(--text-primary);
     font-family: var(--font-mono);
 }
-table input:focus { border-color: var(--accent); outline: none; }
+table input:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 2px var(--accent-bg); }
 input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
 input[type=number] { -moz-appearance: textfield; }
 
 .btn-now {
-    background: var(--bg-card);
-    border: 1px solid var(--border-strong);
-    color: var(--accent);
-    border-radius: 4px;
-    padding: 0 8px;
-    height: 36px;
-    cursor: pointer;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
+    background: var(--bg-card); border: 1px solid var(--border-strong);
+    color: var(--accent); border-radius: 4px; padding: 0 8px; height: 36px;
+    cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;
 }
 .btn-now:hover { background: var(--accent-bg); border-color: var(--accent); }
 
 .member-row.hidden-member { display: none; }
 
 /* ============================================================
-   8. РЕЗУЛЬТАТЫ
+   8. РЕЗУЛЬТАТЫ И СВОДКА
    ============================================================ */
 .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
 .result-card {
     background: var(--bg-result); border-radius: 6px; padding: 16px;
-    border: 1px solid var(--border-strong); border-left: 3px solid var(--accent);
+    border: 1px solid var(--border-color); border-left: 2px solid var(--accent);
 }
 .result-card h3 { margin: 0 0 12px; font-size: 0.8rem; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
-.result-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border-color); gap: 8px; }
+.result-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--border-color); gap: 8px; }
 .result-row:last-child { border-bottom: none; }
 .result-label { color: var(--text-secondary); font-size: 0.85rem; }
 .result-value { font-weight: 600; font-family: var(--font-mono); }
 .result-value.accent { color: var(--accent); font-size: 1.1rem; }
 
 .summary-block {
-    background: var(--bg-summary); border: 1px solid var(--border-strong); border-left: 3px solid var(--accent);
-    border-radius: 6px; padding: 16px; margin-top: 18px;
-    font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.6; color: var(--text-secondary);
-    overflow-wrap: break-word; display: flex; flex-direction: column; gap: 8px;
+    background: var(--bg-summary);
+    border: 1px solid var(--border-color);
+    border-left: 2px solid var(--accent);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-top: 18px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    overflow-x: auto;
 }
-.summary-title { color: var(--accent); font-weight: 600; margin-bottom: 4px; border-bottom: 1px solid var(--border-strong); padding-bottom: 4px; }
-.summary-step { display: block; padding-left: 12px; border-left: 2px solid var(--border-strong); }
+.summary-block .summary-title {
+    font-family: var(--font-stack);
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-strong);
+}
+.summary-step {
+    margin: 8px 0;
+    padding-left: 14px;
+    border-left: 1px solid var(--border-strong);
+    position: relative;
+}
+.summary-step::before {
+    content: '▸';
+    position: absolute;
+    left: -6px;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 0;
+    background: var(--bg-summary);
+    line-height: 1;
+}
+.summary-step strong { color: var(--text-primary); font-weight: 500; }
 .summary-step .val { color: var(--accent); font-weight: 600; }
-.summary-step .formula { display: block; margin-top: 4px; color: var(--text-muted); font-size: 0.8rem; }
+.summary-step .formula {
+    display: block;
+    margin-top: 2px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    word-break: break-word;
+}
 
 /* ============================================================
    9. ПОДВАЛ
@@ -335,14 +339,17 @@ input[type=number] { -moz-appearance: textfield; }
    ============================================================ */
 @media (max-width: 700px) {
     body { padding: 10px 8px; }
-    .topbar { justify-content: center; flex-direction: column; gap: 8px; }
-    .topbar-actions { margin-left: 0; width: 100%; justify-content: center; }
+    
+    /* Возвращаем шапку в нормальный вид (лого слева, кнопки справа) */
+    .topbar { justify-content: space-between; flex-direction: row; align-items: center; }
+    .topbar-actions { margin-left: auto; }
+    
     .calc-body { padding: 16px 12px; }
     
-    .stopwatch-panel { flex-direction: column; align-items: stretch; padding: 12px; }
-    .stopwatch-time { font-size: 2rem; text-align: center; }
-    .stopwatch-controls { justify-content: center; }
-    .btn-sw { flex: 1; justify-content: center; }
+    .stopwatch-panel { flex-direction: row; align-items: center; justify-content: space-between; padding: 8px 12px; }
+    .stopwatch-display { font-size: 1.15rem; margin-bottom: 0; }
+    .stopwatch-controls { justify-content: flex-end; }
+    .btn-sw { flex: none; padding: 4px 10px; font-size: 0.75rem; }
     
     .results-grid { grid-template-columns: 1fr; }
     table th:first-child, table td:first-child { width: 45%; }
@@ -381,16 +388,15 @@ input[type=number] { -moz-appearance: textfield; }
         <!-- ГЛАВНЫЕ ВКЛАДКИ -->
         <div class="fire-subtabs" id="main-tabs">
             <button type="button" class="fire-subtab active" data-main="gdzs">ГДЗС</button>
-            <button type="button" class="fire-subtab" data-main="gazospas">Газоспас</button>
+            <button type="button" class="fire-subtab" data-main="gsp">Газоспас</button>
         </div>
 
-        <!-- СЕКУНДОМЕР -->
+        <!-- ПРИЛИПАЮЩИЙ СЕКУНДОМЕР -->
         <div class="stopwatch-panel">
-            <div class="stopwatch-time" id="swDisplay">00:00:00</div>
+            <div class="stopwatch-display" id="swDisplay">00:00:00</div>
             <div class="stopwatch-controls">
                 <button class="btn-sw primary" id="swStart">▶ Старт</button>
-                <button class="btn-sw" id="swReset">↺ Сброс</button>
-                <button class="btn-sw accent" id="swFill">Записать в звено</button>
+                <button class="btn-sw danger" id="swReset">↺ Сброс</button>
             </div>
         </div>
 
@@ -413,9 +419,9 @@ input[type=number] { -moz-appearance: textfield; }
             </table></div>
 
             <div class="period-switch" id="gdzs-team-tabs">
-                <button type="button" class="period-btn active" data-gdzs-team="1">Звено 1</button>
-                <button type="button" class="period-btn" data-gdzs-team="2">Звено 2</button>
-                <button type="button" class="period-btn" data-gdzs-team="3">Звено 3</button>
+                <button type="button" class="period-btn active" data-team="1">Звено 1</button>
+                <button type="button" class="period-btn" data-team="2">Звено 2</button>
+                <button type="button" class="period-btn" data-team="3">Звено 3</button>
             </div>
 
             <!-- ЗВЕНЬЯ ГДЗС -->
@@ -438,7 +444,7 @@ input[type=number] { -moz-appearance: textfield; }
                             <td>
                                 <div class="time-input-group">
                                     <input type="time" class="gdzs-time" data-team="1" value="11:08" />
-                                    <button type="button" class="btn-now" onclick="setCurrentTime('gdzs', 1)" title="Вставить текущее время">⏱</button>
+                                    <button type="button" class="btn-now" onclick="setCurrentTime('gdzs', 1)" title="Текущее время">⏱</button>
                                 </div>
                             </td>
                         </tr>
@@ -467,7 +473,7 @@ input[type=number] { -moz-appearance: textfield; }
                             <td>
                                 <div class="time-input-group">
                                     <input type="time" class="gdzs-time" data-team="2" value="12:00" />
-                                    <button type="button" class="btn-now" onclick="setCurrentTime('gdzs', 2)" title="Вставить текущее время">⏱</button>
+                                    <button type="button" class="btn-now" onclick="setCurrentTime('gdzs', 2)" title="Текущее время">⏱</button>
                                 </div>
                             </td>
                         </tr>
@@ -496,7 +502,7 @@ input[type=number] { -moz-appearance: textfield; }
                             <td>
                                 <div class="time-input-group">
                                     <input type="time" class="gdzs-time" data-team="3" value="13:15" />
-                                    <button type="button" class="btn-now" onclick="setCurrentTime('gdzs', 3)" title="Вставить текущее время">⏱</button>
+                                    <button type="button" class="btn-now" onclick="setCurrentTime('gdzs', 3)" title="Текущее время">⏱</button>
                                 </div>
                             </td>
                         </tr>
@@ -508,7 +514,7 @@ input[type=number] { -moz-appearance: textfield; }
         </div>
 
         <!-- ГАЗОСПАС -->
-        <div class="fire-sub-content" id="main-content-gazospas">
+        <div class="fire-sub-content" id="main-content-gsp">
             <h2 class="section-title">Условия работы</h2>
             <div class="cond-tabs" id="gsp-cond-tabs">
                 <button type="button" class="cond-btn active" data-cond="normal">Обычные (3)</button>
@@ -528,9 +534,9 @@ input[type=number] { -moz-appearance: textfield; }
             </table></div>
 
             <div class="period-switch" id="gsp-team-tabs">
-                <button type="button" class="period-btn active" data-gsp-team="1">Звено 1</button>
-                <button type="button" class="period-btn" data-gsp-team="2">Звено 2</button>
-                <button type="button" class="period-btn" data-gsp-team="3">Звено 3</button>
+                <button type="button" class="period-btn active" data-team="1">Звено 1</button>
+                <button type="button" class="period-btn" data-team="2">Звено 2</button>
+                <button type="button" class="period-btn" data-team="3">Звено 3</button>
             </div>
 
             <div class="gsp-team-content active" id="gsp-team-1">
@@ -551,7 +557,7 @@ input[type=number] { -moz-appearance: textfield; }
                             <td>
                                 <div class="time-input-group">
                                     <input type="time" class="gsp-time" data-team="1" value="09:30" />
-                                    <button type="button" class="btn-now" onclick="setCurrentTime('gsp', 1)" title="Вставить текущее время">⏱</button>
+                                    <button type="button" class="btn-now" onclick="setCurrentTime('gsp', 1)" title="Текущее время">⏱</button>
                                 </div>
                             </td>
                             <td><input type="number" class="gsp-travel" data-team="1" value="5" step="1" /></td>
@@ -580,7 +586,7 @@ input[type=number] { -moz-appearance: textfield; }
                             <td>
                                 <div class="time-input-group">
                                     <input type="time" class="gsp-time" data-team="2" value="10:15" />
-                                    <button type="button" class="btn-now" onclick="setCurrentTime('gsp', 2)" title="Вставить текущее время">⏱</button>
+                                    <button type="button" class="btn-now" onclick="setCurrentTime('gsp', 2)" title="Текущее время">⏱</button>
                                 </div>
                             </td>
                             <td><input type="number" class="gsp-travel" data-team="2" value="4" step="1" /></td>
@@ -609,7 +615,7 @@ input[type=number] { -moz-appearance: textfield; }
                             <td>
                                 <div class="time-input-group">
                                     <input type="time" class="gsp-time" data-team="3" value="11:00" />
-                                    <button type="button" class="btn-now" onclick="setCurrentTime('gsp', 3)" title="Вставить текущее время">⏱</button>
+                                    <button type="button" class="btn-now" onclick="setCurrentTime('gsp', 3)" title="Текущее время">⏱</button>
                                 </div>
                             </td>
                             <td><input type="number" class="gsp-travel" data-team="3" value="6" step="1" /></td>
@@ -628,7 +634,7 @@ input[type=number] { -moz-appearance: textfield; }
 </div>
 
 <script>
-var THEME_KEY = 'rmk_theme_v13';
+var THEME_KEY = 'rmk_theme_v14';
 
 function $(id) { return document.getElementById(id); }
 function fmt(val, dec = 1) { if (isNaN(val) || !isFinite(val)) return '0.0'; return Number(val).toFixed(dec); }
@@ -640,69 +646,82 @@ function formatTime(hours, minutes) {
 }
 
 /* ============================================================
-   СЕКУНДОМЕР
+   НЕЗАВИСИМЫЕ СЕКУНДОМЕРЫ
    ============================================================ */
-let swInterval = null;
-let swSeconds = 0;
-let swRunning = false;
+const timerData = {
+    'gdzs-1': { s: 0, running: false },
+    'gdzs-2': { s: 0, running: false },
+    'gdzs-3': { s: 0, running: false },
+    'gsp-1':  { s: 0, running: false },
+    'gsp-2':  { s: 0, running: false },
+    'gsp-3':  { s: 0, running: false }
+};
 
-function updateStopwatchDisplay() {
-    let h = Math.floor(swSeconds / 3600);
-    let m = Math.floor((swSeconds % 3600) / 60);
-    let s = swSeconds % 60;
+setInterval(() => {
+    let currentActiveKey = getActiveTimerKey();
+    let updated = false;
+
+    for (let key in timerData) {
+        if (timerData[key].running) {
+            timerData[key].s++;
+            if (key === currentActiveKey) updated = true;
+        }
+    }
+    if (updated) updateTimerDisplay(currentActiveKey);
+}, 1000);
+
+function getActiveTimerKey() {
+    let main = document.querySelector('#main-tabs .fire-subtab.active').dataset.main;
+    let team = document.querySelector('#' + main + '-team-tabs .period-btn.active').dataset.team;
+    return main + '-' + team;
+}
+
+function updateTimerDisplay(key) {
+    let s = timerData[key].s;
+    let h = Math.floor(s / 3600);
+    let m = Math.floor((s % 3600) / 60);
+    let sec = s % 60;
     $('swDisplay').textContent =
         (h < 10 ? '0' : '') + h + ':' +
         (m < 10 ? '0' : '') + m + ':' +
-        (s < 10 ? '0' : '') + s;
+        (sec < 10 ? '0' : '') + sec;
+
+    let btn = $('swStart');
+    if (timerData[key].running) {
+        btn.innerHTML = '⏸ Пауза';
+        btn.classList.add('primary');
+    } else {
+        btn.innerHTML = '▶ Старт';
+        btn.classList.remove('primary');
+    }
 }
 
 $('swStart').addEventListener('click', function() {
-    if (swRunning) {
-        clearInterval(swInterval);
-        this.innerHTML = '▶ Старт';
-        this.classList.remove('primary');
+    let key = getActiveTimerKey();
+    let t = timerData[key];
+
+    if (!t.running) {
+        t.running = true;
+        let [prefix, team] = key.split('-');
+        let timeInput = document.querySelector('.' + prefix + '-time[data-team="' + team + '"]');
+        if (timeInput && !timeInput.value) {
+            let now = new Date();
+            timeInput.value = (now.getHours() < 10 ? '0' : '') + now.getHours() + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+            timeInput.dispatchEvent(new Event('input', { bubbles: true }));
+        }
     } else {
-        swInterval = setInterval(() => {
-            swSeconds++;
-            updateStopwatchDisplay();
-        }, 1000);
-        this.innerHTML = '⏸ Пауза';
-        this.classList.add('primary');
+        t.running = false;
     }
-    swRunning = !swRunning;
+    updateTimerDisplay(key);
 });
 
 $('swReset').addEventListener('click', function() {
-    clearInterval(swInterval);
-    swSeconds = 0;
-    swRunning = false;
-    updateStopwatchDisplay();
-    $('swStart').innerHTML = '▶ Старт';
-    $('swStart').classList.remove('primary');
+    let key = getActiveTimerKey();
+    timerData[key].s = 0;
+    timerData[key].running = false;
+    updateTimerDisplay(key);
 });
 
-$('swFill').addEventListener('click', function() {
-    let h = Math.floor(swSeconds / 3600);
-    let m = Math.floor((swSeconds % 3600) / 60);
-    let timeStr = (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
-    
-    let activeMain = document.querySelector('#main-tabs .fire-subtab.active').dataset.main;
-    let activeTeamId = activeMain === 'gdzs' ?
-        document.querySelector('#gdzs-team-tabs .period-btn.active').dataset.gdzsTeam :
-        document.querySelector('#gsp-team-tabs .period-btn.active').dataset.gspTeam;
-
-    let timeInput = document.querySelector('.' + activeMain + '-time[data-team="' + activeTeamId + '"]');
-    if (timeInput) {
-        timeInput.value = timeStr;
-        timeInput.dispatchEvent(new Event('input', { bubbles: true }));
-        
-        // Краткая визуальная вспышка при успешной записи
-        timeInput.style.borderColor = '#4CAF50';
-        setTimeout(() => { timeInput.style.borderColor = 'var(--border-strong)'; }, 600);
-    }
-});
-
-/* Вставить текущее системное время */
 window.setCurrentTime = function(prefix, teamId) {
     let now = new Date();
     let h = now.getHours();
@@ -921,6 +940,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var mainId = btn.dataset.main;
             $('main-content-' + mainId).classList.add('active');
             $('mainTitle').textContent = (mainId === 'gdzs') ? 'Расчёт ГДЗС' : 'Расчёт Газоспас';
+            updateTimerDisplay(getActiveTimerKey());
         });
     });
 
@@ -930,7 +950,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelectorAll('#' + prefix + '-team-tabs .period-btn').forEach(function(b) { b.classList.remove('active'); });
                 btn.classList.add('active');
                 document.querySelectorAll('.' + prefix + '-team-content').forEach(function(c) { c.style.display = 'none'; });
-                $(prefix + '-team-' + (prefix === 'gdzs' ? btn.dataset.gdzsTeam : btn.dataset.gspTeam)).style.display = 'block';
+                $(prefix + '-team-' + btn.dataset.team).style.display = 'block';
+                updateTimerDisplay(getActiveTimerKey());
             });
         });
         document.querySelectorAll('#' + prefix + '-cond-tabs .cond-btn').forEach(function(btn) {
@@ -948,9 +969,9 @@ document.addEventListener('DOMContentLoaded', function() {
     $('btnReset').addEventListener('click', function() {
         backupData = []; allInputs.forEach(function(inp) { backupData.push(inp.value); });
         var mainId = document.querySelector('#main-tabs .fire-subtab.active').dataset.main;
-        var teamBtn = document.querySelector('#' + (mainId === 'gdzs' ? 'gdzs-team-tabs' : 'gsp-team-tabs') + ' .period-btn.active');
-        var teamId = teamBtn.getAttribute(mainId === 'gdzs' ? 'data-gdzs-team' : 'data-gsp-team');
-        var prefix = mainId === 'gdzs' ? 'gdzs' : 'gsp';
+        var teamBtn = document.querySelector('#' + mainId + '-team-tabs .period-btn.active');
+        var teamId = teamBtn.dataset.team;
+        var prefix = mainId;
 
         document.querySelectorAll('.' + prefix + '-in[data-team="' + teamId + '"], .' + prefix + '-arr[data-team="' + teamId + '"], .' + prefix + '-travel[data-team="' + teamId + '"]').forEach(function(inp) { inp.value = '0'; });
         document.querySelectorAll('.' + prefix + '-time[data-team="' + teamId + '"]').forEach(function(inp) { inp.value = ''; });
@@ -970,10 +991,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.querySelectorAll('#main-content-gdzs input').forEach(function(inp) { inp.addEventListener('input', calcGDZS); });
-    document.querySelectorAll('#main-content-gazospas input').forEach(function(inp) { inp.addEventListener('input', calcGSP); });
+    document.querySelectorAll('#main-content-gsp input').forEach(function(inp) { inp.addEventListener('input', calcGSP); });
 
     updateConditions('gdzs', 'normal');
     updateConditions('gsp', 'normal');
+    updateTimerDisplay(getActiveTimerKey());
 });
 </script>
 
