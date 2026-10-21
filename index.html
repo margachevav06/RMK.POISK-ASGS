@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>РМК Поиск — Расчёт ГДЗС и Газоспас</title>
 
-<link rel="icon" type="image/png" href="logo.png">
-<link rel="apple-touch-icon" href="logo.png">
+<!-- ИКОНКА ДЛЯ РАБОЧЕГО СТОЛА (logo_white.png) -->
+<link rel="icon" type="image/png" href="logo_white.png">
+<link rel="apple-touch-icon" href="logo_white.png">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#C86A32">
 
@@ -104,11 +105,11 @@ input[type="number"], input[type="time"] {
     background: transparent; border: none; color: white;
     font-size: 1.2rem; cursor: pointer; font-weight: bold;
 }
-@keyframes slideDown { from { top: -50px; opacity: 0; } to { top: 20px; opacity: 1; } }
+@keyframes slideDown { from { top: -50px; opacity: 0; } to { top: 20px; opacity: 1:; } }
 
 @keyframes blink-danger {
-    0% { border-color: var(--border-strong); background: transparent; color: var(--text-secondary); }
-    50% { border-color: var(--danger); background: var(--danger-bg); color: var(--danger); font-weight: bold; }
+     var0% { border(---color: var(--border-strong);danger background: transparent; color: var(--);text-secondary); }
+    50% { font border-color: var(--danger); background: var(--danger-bg); color-weight: bold; }
     100% { border-color: var(--border-strong); background: transparent; color: var(--text-secondary); }
 }
 .period-btn.blink { animation: blink-danger 1s infinite; }
@@ -134,7 +135,16 @@ input[type="number"], input[type="time"] {
 }
 
 .topbar-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; flex-shrink: 0; }
-.logo-img { max-height: 36px; width: auto; object-fit: contain; display: block; }
+
+/* Логотип внутри приложения: logo.png с прозрачным фоном */
+.logo-img { 
+    max-height: 36px; 
+    width: auto; 
+    object-fit: contain; 
+    display: block;
+    background: transparent !important; 
+}
+
 .logo-text { color: var(--accent); white-space: nowrap; font-weight: 600; letter-spacing: 0.12em; font-size: 1rem; }
 
 .topbar-actions { display: flex; gap: 6px; align-items: center; }
@@ -303,7 +313,6 @@ input[type=number] { -moz-appearance: textfield; }
 </head>
 <body>
 
-<!-- БАННЕР УВЕДОМЛЕНИЙ -->
 <div class="alert-banner" id="alertBanner">
     <span id="alertText">Время возврата!</span>
     <button id="closeAlert">✕</button>
@@ -312,8 +321,8 @@ input[type=number] { -moz-appearance: textfield; }
 <div class="app">
     <div class="topbar">
         <a class="topbar-logo" href="#">
-            <!-- Логотип подгружается скриптом в зависимости от темы -->
-            <img src="logo_black.png" id="appLogo" alt="РМК Поиск" class="logo-img" onerror="this.style.display='none'; document.getElementById('logoText').style.display='block';">
+            <!-- Логотип внутри приложения: logo.png -->
+            <img src="logo.png" alt="РМК Поиск" class="logo-img" onerror="this.style.display='none'; document.getElementById('logoText').style.display='block';">
             <span class="logo-text" id="logoText" style="display: none;">РМК ПОИСК</span>
         </a>
         <div class="topbar-actions">
@@ -576,7 +585,7 @@ input[type=number] { -moz-appearance: textfield; }
 </div>
 
 <script>
-var THEME_KEY = 'rmk_theme_v19';
+var THEME_KEY = 'rmk_theme_v21';
 
 function $(id) { return document.getElementById(id); }
 function fmt(val, dec = 1) { if (isNaN(val) || !isFinite(val)) return '0.0'; return Number(val).toFixed(dec); }
@@ -588,25 +597,6 @@ function formatTime(hours, minutes) {
 }
 
 /* ============================================================
-   АВТОМАТИЧЕСКАЯ СМЕНА ЛОГОТИПА (Светлая/Темная тема ОС)
-   ============================================================ */
-function updateLogoBasedOnTheme(isDark) {
-    const logo = $('appLogo');
-    if (!logo) return;
-    // Темная тема -> черный логотип, Светлая тема -> белый логотип
-    logo.src = isDark ? 'logo_black.png' : 'logo_white.png';
-}
-
-// Проверяем системную тему при загрузке
-const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-updateLogoBasedOnTheme(darkModeMediaQuery.matches);
-
-// Слушаем изменения темы на телефоне "на лету"
-darkModeMediaQuery.addEventListener('change', (e) => {
-    updateLogoBasedOnTheme(e.matches);
-});
-
-/* ============================================================
    АВТОМАТИЧЕСКИЙ WAKE LOCK (Экран не гаснет)
    ============================================================ */
 let wakeLock = null;
@@ -615,15 +605,11 @@ async function requestWakeLock() {
         if ('wakeLock' in navigator) {
             wakeLock = await navigator.wakeLock.request('screen');
         }
-    } catch (err) {
-        // Игнорируем
-    }
+    } catch (err) { }
 }
 document.addEventListener('DOMContentLoaded', requestWakeLock);
 document.addEventListener('visibilitychange', async () => {
-    if (document.visibilityState === 'visible') {
-        await requestWakeLock();
-    }
+    if (document.visibilityState === 'visible') { await requestWakeLock(); }
 });
 
 /* ============================================================
@@ -631,9 +617,7 @@ document.addEventListener('visibilitychange', async () => {
    ============================================================ */
 let audioCtx = null;
 function initAudio() {
-    if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
+    if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
 }
 document.body.addEventListener('click', initAudio, { once: true });
 
@@ -643,12 +627,9 @@ function playBeep(isLong = true) {
     
     let osc = audioCtx.createOscillator();
     let gain = audioCtx.createGain();
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
+    osc.connect(gain); gain.connect(audioCtx.destination);
     
-    osc.type = 'sine';
-    osc.frequency.value = isLong ? 880 : 1000;
-    
+    osc.type = 'sine'; osc.frequency.value = isLong ? 880 : 1000;
     let now = audioCtx.currentTime;
     let duration = isLong ? 0.6 : 0.15;
     
@@ -656,8 +637,7 @@ function playBeep(isLong = true) {
     gain.gain.linearRampToValueAtTime(0.5, now + 0.05);
     gain.gain.exponentialRampToValueAtTime(0.01, now + duration);
     
-    osc.start(now);
-    osc.stop(now + duration);
+    osc.start(now); osc.stop(now + duration);
     
     if (isLong) {
         setTimeout(() => {
@@ -728,9 +708,7 @@ function showAlert(text, duration = 5000) {
     banner.classList.add('show');
     
     if (alertTimeout) clearTimeout(alertTimeout);
-    alertTimeout = setTimeout(() => {
-        banner.classList.remove('show');
-    }, duration);
+    alertTimeout = setTimeout(() => { banner.classList.remove('show'); }, duration);
 }
 
 $('closeAlert').addEventListener('click', () => {
